@@ -40,7 +40,7 @@ async function bootstrap() {
     .build();
 
   const document = SwaggerModule.createDocument(app, swaggerConfig);
-  SwaggerModule.setup('tmadoc', app, document, {
+  SwaggerModule.setup('elpdoc', app, document, {
     swaggerOptions: { persistAuthorization: true },
   });
 
