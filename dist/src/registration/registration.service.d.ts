@@ -1,9 +1,12 @@
+import { Model } from 'mongoose';
+import { Registration, RegistrationDocument } from './schema/registration.schema';
 import { CreateRegistrationDto } from './dto/create-registration.dto';
-import { UpdateRegistrationDto } from './dto/update-registration.dto';
 export declare class RegistrationService {
-    create(createRegistrationDto: CreateRegistrationDto): string;
-    findAll(): string;
-    findOne(id: number): string;
-    update(id: number, updateRegistrationDto: UpdateRegistrationDto): string;
-    remove(id: number): string;
+    private registrationModel;
+    constructor(registrationModel: Model<RegistrationDocument>);
+    create(createRegistrationDto: CreateRegistrationDto): Promise<Registration>;
+    findAll(): Promise<Registration[]>;
+    findOne(id: string): Promise<Registration>;
+    update(id: string, updateDto: Partial<CreateRegistrationDto>): Promise<Registration>;
+    remove(id: string): Promise<Registration>;
 }

@@ -14,9 +14,9 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RegistrationController = void 0;
 const common_1 = require("@nestjs/common");
+const swagger_1 = require("@nestjs/swagger");
 const registration_service_1 = require("./registration.service");
 const create_registration_dto_1 = require("./dto/create-registration.dto");
-const update_registration_dto_1 = require("./dto/update-registration.dto");
 let RegistrationController = class RegistrationController {
     registrationService;
     constructor(registrationService) {
@@ -29,13 +29,13 @@ let RegistrationController = class RegistrationController {
         return this.registrationService.findAll();
     }
     findOne(id) {
-        return this.registrationService.findOne(+id);
+        return this.registrationService.findOne(id);
     }
-    update(id, updateRegistrationDto) {
-        return this.registrationService.update(+id, updateRegistrationDto);
+    update(id, updateDto) {
+        return this.registrationService.update(id, updateDto);
     }
     remove(id) {
-        return this.registrationService.remove(+id);
+        return this.registrationService.remove(id);
     }
 };
 exports.RegistrationController = RegistrationController;
@@ -44,37 +44,38 @@ __decorate([
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_registration_dto_1.CreateRegistrationDto]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], RegistrationController.prototype, "create", null);
 __decorate([
     (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], RegistrationController.prototype, "findAll", null);
 __decorate([
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], RegistrationController.prototype, "findOne", null);
 __decorate([
-    (0, common_1.Patch)(':id'),
+    (0, common_1.Put)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, update_registration_dto_1.UpdateRegistrationDto]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:paramtypes", [String, Object]),
+    __metadata("design:returntype", Promise)
 ], RegistrationController.prototype, "update", null);
 __decorate([
     (0, common_1.Delete)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], RegistrationController.prototype, "remove", null);
 exports.RegistrationController = RegistrationController = __decorate([
+    (0, swagger_1.ApiTags)('registration'),
     (0, common_1.Controller)('registration'),
     __metadata("design:paramtypes", [registration_service_1.RegistrationService])
 ], RegistrationController);

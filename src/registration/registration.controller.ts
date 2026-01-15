@@ -1,34 +1,36 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { RegistrationService } from './registration.service';
+import { Controller, Get, Post, Body, Param, Put, Delete } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
+import { RegistrationService } from './registration.service'; // ✅ path must be correct
+import { Registration, RegistrationDocument } from './schema/registration.schema';
 import { CreateRegistrationDto } from './dto/create-registration.dto';
-import { UpdateRegistrationDto } from './dto/update-registration.dto';
 
+@ApiTags('registration')
 @Controller('registration')
 export class RegistrationController {
-  constructor(private readonly registrationService: RegistrationService) {}
+  constructor(private readonly registrationService: RegistrationService) {} // ✅ inject service
 
   @Post()
-  create(@Body() createRegistrationDto: CreateRegistrationDto) {
-    return this.registrationService.create(createRegistrationDto);
+  create(@Body() createRegistrationDto: CreateRegistrationDto): Promise<Registration> {
+    return this.registrationService.create(createRegistrationDto); // ✅ must exist
   }
 
   @Get()
-  findAll() {
-    return this.registrationService.findAll();
+  findAll(): Promise<Registration[]> {
+    return this.registrationService.findAll(); // ✅ must exist
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.registrationService.findOne(+id);
+  findOne(@Param('id') id: string): Promise<Registration> {
+    return this.registrationService.findOne(id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateRegistrationDto: UpdateRegistrationDto) {
-    return this.registrationService.update(+id, updateRegistrationDto);
+  @Put(':id')
+  update(@Param('id') id: string, @Body() updateDto: Partial<CreateRegistrationDto>): Promise<Registration> {
+    return this.registrationService.update(id, updateDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.registrationService.remove(+id);
+  remove(@Param('id') id: string): Promise<Registration> {
+    return this.registrationService.remove(id);
   }
 }
