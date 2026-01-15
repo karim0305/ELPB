@@ -33,7 +33,7 @@ async function bootstrap() {
     const port = Number(process.env.PORT) || 3010;
     await app.listen(port);
     console.log(`🚀 Server running on port ${port}`);
-    console.log(`📑 Swagger docs available at /tmadoc`);
+    console.log(`📑 Swagger docs available at /elpdoc`);
 }
 bootstrap();
 //# sourceMappingURL=main.js.map

@@ -5,8 +5,9 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AuthModule } from './user/auth/auth-module.module';
 import { UserModule } from './user/user.module';
-import { MeasurementModule } from './measurement/measurement.module';
-import { SuitbookingModule } from './suitbooking/suitbooking.module';
+import { MillInfoModule } from './millinfo/millinfo.module';
+import { RegistrationModule } from './registration/registration.module';
+
 
 
 @Module({
@@ -46,8 +47,8 @@ import { SuitbookingModule } from './suitbooking/suitbooking.module';
     }),
     AuthModule,
     UserModule,
-    MeasurementModule,
-    SuitbookingModule,
+    MillInfoModule,
+    RegistrationModule,
 
   ],
   controllers: [AppController],
