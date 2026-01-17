@@ -1,6 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 import { Types } from 'mongoose';
+import { Device } from 'src/device/schema/device.schema';
 import { MillInfo } from 'src/millinfo/schema/millinfo.schema';
 
 export type RegistrationDocument = Registration & Document;
@@ -26,6 +27,14 @@ export class Registration {
     required: true 
   })
   millid: Types.ObjectId;
+
+  
+  @Prop({ 
+    type: Types.ObjectId, 
+    ref: Device.name, 
+    required: true 
+  })
+  deviceId: Types.ObjectId;
 
 
   @Prop({ required: true })

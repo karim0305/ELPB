@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.RegistrationSchema = exports.Registration = exports.GpsSchema = exports.Gps = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
+const device_schema_1 = require("../../device/schema/device.schema");
 const millinfo_schema_1 = require("../../millinfo/schema/millinfo.schema");
 let Gps = class Gps {
     latitude;
@@ -32,6 +33,7 @@ exports.Gps = Gps = __decorate([
 exports.GpsSchema = mongoose_1.SchemaFactory.createForClass(Gps);
 let Registration = class Registration {
     millid;
+    deviceId;
     companyCode;
     companyName;
     lpCode;
@@ -65,6 +67,14 @@ __decorate([
     }),
     __metadata("design:type", mongoose_2.Types.ObjectId)
 ], Registration.prototype, "millid", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({
+        type: mongoose_2.Types.ObjectId,
+        ref: device_schema_1.Device.name,
+        required: true
+    }),
+    __metadata("design:type", mongoose_2.Types.ObjectId)
+], Registration.prototype, "deviceId", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ required: true }),
     __metadata("design:type", String)

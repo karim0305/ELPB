@@ -8,6 +8,7 @@ import { UserModule } from './user/user.module';
 import { MillInfoModule } from './millinfo/millinfo.module';
 import { RegistrationModule } from './registration/registration.module';
 import { HaulageModule } from './houlage/houlage.module';
+import { DeviceModule } from './device/device.module';
 
 
 
@@ -51,6 +52,7 @@ import { HaulageModule } from './houlage/houlage.module';
     MillInfoModule,
     RegistrationModule,
     HaulageModule,
+    DeviceModule,
 
   ],
   controllers: [AppController],

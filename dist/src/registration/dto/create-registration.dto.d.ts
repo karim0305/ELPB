@@ -4,6 +4,7 @@ export declare class GpsDto {
 }
 export declare class CreateRegistrationDto {
     millid: string;
+    deviceId: string;
     companyCode: string;
     companyName: string;
     lpCode: string;

@@ -30,6 +30,7 @@ __decorate([
 ], GpsDto.prototype, "longitude", void 0);
 class CreateRegistrationDto {
     millid;
+    deviceId;
     companyCode;
     companyName;
     lpCode;
@@ -56,11 +57,17 @@ class CreateRegistrationDto {
 }
 exports.CreateRegistrationDto = CreateRegistrationDto;
 __decorate([
-    (0, swagger_1.ApiProperty)({ example: '6466464', description: 'Unique mill ID' }),
+    (0, swagger_1.ApiProperty)({ example: '64cfa9a3b8c1a34f9e12abcd', description: 'Unique mill ID' }),
     (0, class_validator_1.IsMongoId)(),
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], CreateRegistrationDto.prototype, "millid", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ example: '64cfa9a3b8c1a34f9e12abcd', description: 'Device MongoDB ObjectId' }),
+    (0, class_validator_1.IsMongoId)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateRegistrationDto.prototype, "deviceId", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({ example: 'COMP001', description: 'Company code' }),
     (0, class_validator_1.IsString)(),
