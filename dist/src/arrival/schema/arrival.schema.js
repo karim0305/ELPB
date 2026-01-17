@@ -9,11 +9,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RegistrationSchema = exports.Registration = exports.GpsSchema = exports.Gps = void 0;
+exports.ArrivalSchema = exports.Arrival = exports.GpsSchema = exports.Gps = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
 const device_schema_1 = require("../../device/schema/device.schema");
 const millinfo_schema_1 = require("../../millinfo/schema/millinfo.schema");
+const registration_schema_1 = require("../../registration/schema/registration.schema");
 let Gps = class Gps {
     latitude;
     longitude;
@@ -31,9 +32,10 @@ exports.Gps = Gps = __decorate([
     (0, mongoose_1.Schema)({ timestamps: true })
 ], Gps);
 exports.GpsSchema = mongoose_1.SchemaFactory.createForClass(Gps);
-let Registration = class Registration {
+let Arrival = class Arrival {
     millid;
     deviceId;
+    registrationId;
     companyCode;
     companyName;
     lpCode;
@@ -59,7 +61,7 @@ let Registration = class Registration {
     difference;
     status;
 };
-exports.Registration = Registration;
+exports.Arrival = Arrival;
 __decorate([
     (0, mongoose_1.Prop)({
         type: mongoose_2.Types.ObjectId,
@@ -67,7 +69,7 @@ __decorate([
         required: true
     }),
     __metadata("design:type", mongoose_2.Types.ObjectId)
-], Registration.prototype, "millid", void 0);
+], Arrival.prototype, "millid", void 0);
 __decorate([
     (0, mongoose_1.Prop)({
         type: mongoose_2.Types.ObjectId,
@@ -75,105 +77,113 @@ __decorate([
         required: true
     }),
     __metadata("design:type", mongoose_2.Types.ObjectId)
-], Registration.prototype, "deviceId", void 0);
+], Arrival.prototype, "deviceId", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({
+        type: mongoose_2.Types.ObjectId,
+        ref: registration_schema_1.Registration.name,
+        required: true
+    }),
+    __metadata("design:type", mongoose_2.Types.ObjectId)
+], Arrival.prototype, "registrationId", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ required: true }),
     __metadata("design:type", String)
-], Registration.prototype, "companyCode", void 0);
+], Arrival.prototype, "companyCode", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ required: true }),
     __metadata("design:type", String)
-], Registration.prototype, "companyName", void 0);
+], Arrival.prototype, "companyName", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ required: true }),
     __metadata("design:type", String)
-], Registration.prototype, "lpCode", void 0);
+], Arrival.prototype, "lpCode", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ required: true }),
     __metadata("design:type", String)
-], Registration.prototype, "lpName", void 0);
+], Arrival.prototype, "lpName", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ required: true }),
     __metadata("design:type", String)
-], Registration.prototype, "serialNumber", void 0);
+], Arrival.prototype, "serialNumber", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ required: true }),
     __metadata("design:type", String)
-], Registration.prototype, "imei", void 0);
+], Arrival.prototype, "imei", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ type: exports.GpsSchema }),
     __metadata("design:type", Gps)
-], Registration.prototype, "gps", void 0);
+], Arrival.prototype, "gps", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", Number)
-], Registration.prototype, "gpsDistance", void 0);
+], Arrival.prototype, "gpsDistance", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
-], Registration.prototype, "towerId", void 0);
+], Arrival.prototype, "towerId", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
-], Registration.prototype, "haulageCode", void 0);
+], Arrival.prototype, "haulageCode", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
-], Registration.prototype, "haulageName", void 0);
+], Arrival.prototype, "haulageName", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
-], Registration.prototype, "registrationNumber", void 0);
+], Arrival.prototype, "registrationNumber", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
-], Registration.prototype, "vehicleNumber", void 0);
+], Arrival.prototype, "vehicleNumber", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
-], Registration.prototype, "permitImage", void 0);
+], Arrival.prototype, "permitImage", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
-], Registration.prototype, "driverImage", void 0);
+], Arrival.prototype, "driverImage", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
-], Registration.prototype, "vehicleImage", void 0);
+], Arrival.prototype, "vehicleImage", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ type: Date }),
     __metadata("design:type", Date)
-], Registration.prototype, "date", void 0);
+], Arrival.prototype, "date", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
-], Registration.prototype, "time", void 0);
+], Arrival.prototype, "time", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
-], Registration.prototype, "remarks", void 0);
+], Arrival.prototype, "remarks", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
-], Registration.prototype, "documentNo", void 0);
+], Arrival.prototype, "documentNo", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
-], Registration.prototype, "standardTime", void 0);
+], Arrival.prototype, "standardTime", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
-], Registration.prototype, "timeTaken", void 0);
+], Arrival.prototype, "timeTaken", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
-], Registration.prototype, "difference", void 0);
+], Arrival.prototype, "difference", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ required: true }),
     __metadata("design:type", String)
-], Registration.prototype, "status", void 0);
-exports.Registration = Registration = __decorate([
+], Arrival.prototype, "status", void 0);
+exports.Arrival = Arrival = __decorate([
     (0, mongoose_1.Schema)()
-], Registration);
-exports.RegistrationSchema = mongoose_1.SchemaFactory.createForClass(Registration);
-//# sourceMappingURL=registration.schema.js.map
+], Arrival);
+exports.ArrivalSchema = mongoose_1.SchemaFactory.createForClass(Arrival);
+//# sourceMappingURL=arrival.schema.js.map

@@ -2,9 +2,10 @@ export declare class GpsDto {
     latitude: number;
     longitude: number;
 }
-export declare class CreateRegistrationDto {
+export declare class CreateArrivalDto {
     millid: string;
     deviceId: string;
+    registrationId: string;
     companyCode: string;
     companyName: string;
     lpCode: string;

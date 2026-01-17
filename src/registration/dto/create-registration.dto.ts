@@ -138,4 +138,9 @@ export class CreateRegistrationDto {
   @IsOptional()
   @IsString()
   difference?: string;
+
+
+  @ApiProperty({ example: 'Pending', description: 'Pending,Accepted,Rejected' })
+  @IsString()
+  status: string; // new required field
 }

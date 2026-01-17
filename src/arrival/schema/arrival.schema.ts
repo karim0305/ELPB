@@ -1,10 +1,10 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
-import { Types } from 'mongoose';
+import { Document, Types } from 'mongoose';
 import { Device } from 'src/device/schema/device.schema';
 import { MillInfo } from 'src/millinfo/schema/millinfo.schema';
+import { Registration } from 'src/registration/schema/registration.schema';
 
-export type RegistrationDocument = Registration & Document;
+export type ArrivalDocument = Arrival & Document;
 
 @Schema({ timestamps: true })
 export class Gps {
@@ -18,9 +18,7 @@ export class Gps {
 export const GpsSchema = SchemaFactory.createForClass(Gps);
 
 @Schema()
-export class Registration {
-
-
+export class Arrival {
   @Prop({ 
     type: Types.ObjectId, 
     ref: MillInfo.name, 
@@ -28,13 +26,23 @@ export class Registration {
   })
   millid: Types.ObjectId;
 
-  
   @Prop({ 
     type: Types.ObjectId, 
     ref: Device.name, 
     required: true 
   })
   deviceId: Types.ObjectId;
+
+
+
+    @Prop({ 
+    type: Types.ObjectId, 
+    ref: Registration.name, 
+    required: true 
+  })
+  registrationId: Types.ObjectId;
+
+
 
 
   @Prop({ required: true })
@@ -55,7 +63,7 @@ export class Registration {
   @Prop({ required: true })
   imei: string;
 
-  @Prop({ type: GpsSchema }) // nested object
+  @Prop({ type: GpsSchema })
   gps?: Gps;
 
   @Prop()
@@ -106,8 +114,9 @@ export class Registration {
   @Prop()
   difference?: string;
 
+  // New field for Arrival
   @Prop({ required: true })
   status: string;
 }
 
-export const RegistrationSchema = SchemaFactory.createForClass(Registration);
+export const ArrivalSchema = SchemaFactory.createForClass(Arrival);

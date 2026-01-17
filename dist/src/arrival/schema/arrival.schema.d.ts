@@ -1,6 +1,5 @@
-import { Document } from 'mongoose';
-import { Types } from 'mongoose';
-export type RegistrationDocument = Registration & Document;
+import { Document, Types } from 'mongoose';
+export type ArrivalDocument = Arrival & Document;
 export declare class Gps {
     latitude: number;
     longitude: number;
@@ -14,9 +13,10 @@ export declare const GpsSchema: import("mongoose").Schema<Gps, import("mongoose"
 } & {
     __v: number;
 }>;
-export declare class Registration {
+export declare class Arrival {
     millid: Types.ObjectId;
     deviceId: Types.ObjectId;
+    registrationId: Types.ObjectId;
     companyCode: string;
     companyName: string;
     lpCode: string;
@@ -42,11 +42,11 @@ export declare class Registration {
     difference?: string;
     status: string;
 }
-export declare const RegistrationSchema: import("mongoose").Schema<Registration, import("mongoose").Model<Registration, any, any, any, Document<unknown, any, Registration, any, {}> & Registration & {
+export declare const ArrivalSchema: import("mongoose").Schema<Arrival, import("mongoose").Model<Arrival, any, any, any, Document<unknown, any, Arrival, any, {}> & Arrival & {
     _id: Types.ObjectId;
 } & {
     __v: number;
-}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, Registration, Document<unknown, {}, import("mongoose").FlatRecord<Registration>, {}, import("mongoose").ResolveSchemaOptions<import("mongoose").DefaultSchemaOptions>> & import("mongoose").FlatRecord<Registration> & {
+}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, Arrival, Document<unknown, {}, import("mongoose").FlatRecord<Arrival>, {}, import("mongoose").ResolveSchemaOptions<import("mongoose").DefaultSchemaOptions>> & import("mongoose").FlatRecord<Arrival> & {
     _id: Types.ObjectId;
 } & {
     __v: number;
