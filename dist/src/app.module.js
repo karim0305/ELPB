@@ -16,6 +16,7 @@ const auth_module_module_1 = require("./user/auth/auth-module.module");
 const user_module_1 = require("./user/user.module");
 const millinfo_module_1 = require("./millinfo/millinfo.module");
 const registration_module_1 = require("./registration/registration.module");
+const houlage_module_1 = require("./houlage/houlage.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -57,6 +58,7 @@ exports.AppModule = AppModule = __decorate([
             user_module_1.UserModule,
             millinfo_module_1.MillInfoModule,
             registration_module_1.RegistrationModule,
+            houlage_module_1.HaulageModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

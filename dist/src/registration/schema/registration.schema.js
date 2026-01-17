@@ -11,6 +11,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RegistrationSchema = exports.Registration = exports.GpsSchema = exports.Gps = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
+const mongoose_2 = require("mongoose");
+const millinfo_schema_1 = require("../../millinfo/schema/millinfo.schema");
 let Gps = class Gps {
     latitude;
     longitude;
@@ -56,8 +58,12 @@ let Registration = class Registration {
 };
 exports.Registration = Registration;
 __decorate([
-    (0, mongoose_1.Prop)({ required: true }),
-    __metadata("design:type", String)
+    (0, mongoose_1.Prop)({
+        type: mongoose_2.Types.ObjectId,
+        ref: millinfo_schema_1.MillInfo.name,
+        required: true
+    }),
+    __metadata("design:type", mongoose_2.Types.ObjectId)
 ], Registration.prototype, "millid", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ required: true }),

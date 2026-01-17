@@ -15,7 +15,7 @@ const swagger_1 = require("@nestjs/swagger");
 const user_enum_1 = require("../enum/user.enum");
 const class_transformer_1 = require("class-transformer");
 class CreateUserDto {
-    UserId;
+    millid;
     name;
     email;
     phone;
@@ -36,7 +36,7 @@ __decorate([
     (0, class_validator_1.IsMongoId)(),
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
-], CreateUserDto.prototype, "UserId", void 0);
+], CreateUserDto.prototype, "millid", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
         description: 'Full name of the user',

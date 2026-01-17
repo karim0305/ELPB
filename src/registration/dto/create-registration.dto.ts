@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsString, IsOptional, IsNumber, IsDate, ValidateNested } from 'class-validator';
+import { IsString, IsOptional, IsNumber, IsDate, ValidateNested, IsMongoId, IsNotEmpty } from 'class-validator';
 import { Type } from 'class-transformer';
 
 export class GpsDto {
@@ -14,7 +14,8 @@ export class GpsDto {
 
 export class CreateRegistrationDto {
   @ApiProperty({ example: '6466464', description: 'Unique mill ID' })
-  @IsString()
+ @IsMongoId()
+  @IsNotEmpty()
   millid: string;
 
   @ApiProperty({ example: 'COMP001', description: 'Company code' })

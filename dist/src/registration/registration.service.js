@@ -22,32 +22,61 @@ let RegistrationService = class RegistrationService {
     constructor(registrationModel) {
         this.registrationModel = registrationModel;
     }
-    async create(createRegistrationDto) {
-        const created = new this.registrationModel(createRegistrationDto);
+    async create(dto) {
+        const created = new this.registrationModel({
+            ...dto,
+            millid: new mongoose_2.Types.ObjectId(dto.millid),
+        });
         const saved = await created.save();
         return saved.toObject();
     }
     async findAll() {
-        const registrations = await this.registrationModel.find().exec();
+        const registrations = await this.registrationModel
+            .find()
+            .populate('millid')
+            .exec();
         return registrations.map(r => r.toObject());
     }
     async findOne(id) {
-        const registration = await this.registrationModel.findById(id).exec();
-        if (!registration)
+        const registration = await this.registrationModel
+            .findById(id)
+            .populate('millid')
+            .exec();
+        if (!registration) {
             throw new common_1.NotFoundException(`Registration with ID ${id} not found`);
+        }
         return registration.toObject();
     }
     async update(id, updateDto) {
-        const updated = await this.registrationModel.findByIdAndUpdate(id, updateDto, { new: true }).exec();
-        if (!updated)
+        const updated = await this.registrationModel
+            .findByIdAndUpdate(id, {
+            ...updateDto,
+            ...(updateDto.millid && {
+                millid: new mongoose_2.Types.ObjectId(updateDto.millid),
+            }),
+        }, { new: true })
+            .populate('millid')
+            .exec();
+        if (!updated) {
             throw new common_1.NotFoundException(`Registration with ID ${id} not found`);
+        }
         return updated.toObject();
     }
     async remove(id) {
-        const deleted = await this.registrationModel.findByIdAndDelete(id).exec();
-        if (!deleted)
+        const deleted = await this.registrationModel
+            .findByIdAndDelete(id)
+            .exec();
+        if (!deleted) {
             throw new common_1.NotFoundException(`Registration with ID ${id} not found`);
+        }
         return deleted.toObject();
+    }
+    async findByMill(millid) {
+        const registrations = await this.registrationModel
+            .find({ millid: new mongoose_2.Types.ObjectId(millid) })
+            .populate('millid')
+            .exec();
+        return registrations.map(r => r.toObject());
     }
 };
 exports.RegistrationService = RegistrationService;

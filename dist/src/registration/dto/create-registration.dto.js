@@ -57,7 +57,8 @@ class CreateRegistrationDto {
 exports.CreateRegistrationDto = CreateRegistrationDto;
 __decorate([
     (0, swagger_1.ApiProperty)({ example: '6466464', description: 'Unique mill ID' }),
-    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsMongoId)(),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], CreateRegistrationDto.prototype, "millid", void 0);
 __decorate([

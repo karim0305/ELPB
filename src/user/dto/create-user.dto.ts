@@ -19,7 +19,7 @@ export class CreateUserDto {
     })
     @IsMongoId()
     @IsNotEmpty()
-    UserId: string; // Reference to User (customer)
+    millid: string; // Reference to millid
   
   @ApiProperty({
     description: 'Full name of the user',

@@ -1,5 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
+import { Types } from 'mongoose';
+import { MillInfo } from 'src/millinfo/schema/millinfo.schema';
 
 export type RegistrationDocument = Registration & Document;
 
@@ -16,8 +18,15 @@ export const GpsSchema = SchemaFactory.createForClass(Gps);
 
 @Schema()
 export class Registration {
-  @Prop({ required: true })
-  millid: string;
+
+
+  @Prop({ 
+    type: Types.ObjectId, 
+    ref: MillInfo.name, 
+    required: true 
+  })
+  millid: Types.ObjectId;
+
 
   @Prop({ required: true })
   companyCode: string;
