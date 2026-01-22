@@ -43,6 +43,9 @@ export class Device extends Document {
 
   @Prop({ default: null })
   macAddress?: string;
+   
+  @Prop({ default: null })
+  status?: string;
 }
 
 export const DeviceSchema = SchemaFactory.createForClass(Device);
