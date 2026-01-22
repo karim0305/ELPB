@@ -11,9 +11,9 @@ export declare class DeviceService {
     }> & {
         __v: number;
     })[]>;
-    findByMillid(millid: string): Promise<Device>;
-    updateByMillid(millid: string, updateData: UpdateDeviceDto): Promise<Device>;
-    deleteById(deviceId: string): Promise<{
+    findByImei(imei: string): Promise<Device>;
+    updateByImei(imei: string, updateData: UpdateDeviceDto): Promise<Device>;
+    deleteByImei(imei: string): Promise<{
         message: string;
     }>;
 }

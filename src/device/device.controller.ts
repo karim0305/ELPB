@@ -11,7 +11,7 @@ import { ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
 import { DeviceService } from './device.service';
 import { CreateDeviceDto } from './dto/create-device.dto';
 import { UpdateDeviceDto } from './dto/update-device.dto';
-
+ 
 @ApiTags('Device')
 @Controller('device')
 export class DeviceController {
@@ -32,29 +32,30 @@ export class DeviceController {
   }
 
   // ✅ READ ONE
-  @Get(':millid')
-  @ApiParam({ name: 'millid', example: 'mill-123456' })
-  @ApiOperation({ summary: 'Get device by millid' })
-  findOne(@Param('millid') millid: string) {
-    return this.deviceService.findByMillid(millid);
-  }
+ @Get('imei/:imei')
+@ApiParam({ name: 'imei', example: '8f7d6623071fd85c' })
+@ApiOperation({ summary: 'Get device by IMEI' })
+findByImei(@Param('imei') imei: string) {
+  return this.deviceService.findByImei(imei);
+}
+
 
   // ✅ UPDATE
-  @Patch(':millid')
-  @ApiParam({ name: 'millid', example: 'mill-123456' })
-  @ApiOperation({ summary: 'Update device information by millid' })
-  update(
-    @Param('millid') millid: string,
-    @Body() dto: UpdateDeviceDto,
-  ) {
-    return this.deviceService.updateByMillid(millid, dto);
-  }
+ @Patch('imei/:imei')
+@ApiParam({ name: 'imei', example: '8f7d6623071fd85c' })
+@ApiOperation({ summary: 'Update device information by IMEI' })
+updateByImeiController(
+  @Param('imei') imei: string,
+  @Body() dto: UpdateDeviceDto,
+) {
+  return this.deviceService.updateByImei(imei, dto);
+}
 
   // ✅ DELETE
-  @Delete(':millid')
-  @ApiParam({ name: 'millid', example: 'mill-123456' })
-  @ApiOperation({ summary: 'Delete device by millid' })
-  remove(@Param('millid') millid: string) {
-    return this.deviceService.deleteById(millid);
-  }
+@Delete('imei/:imei')
+@ApiParam({ name: 'imei', example: '8f7d6623071fd85c' })
+@ApiOperation({ summary: 'Delete device by IMEI' })
+deleteByImeiController(@Param('imei') imei: string) {
+  return this.deviceService.deleteByImei(imei);
+}
 }

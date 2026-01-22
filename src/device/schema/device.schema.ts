@@ -44,7 +44,7 @@ export class Device extends Document {
   @Prop({ default: null })
   macAddress?: string;
    
-  @Prop({ default: null })
+  @Prop({ default: 'Deactive' })
   status?: string;
 }
 

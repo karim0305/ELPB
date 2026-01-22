@@ -29,14 +29,14 @@ let DeviceController = class DeviceController {
     findAll() {
         return this.deviceService.findAll();
     }
-    findOne(millid) {
-        return this.deviceService.findByMillid(millid);
+    findByImei(imei) {
+        return this.deviceService.findByImei(imei);
     }
-    update(millid, dto) {
-        return this.deviceService.updateByMillid(millid, dto);
+    updateByImeiController(imei, dto) {
+        return this.deviceService.updateByImei(imei, dto);
     }
-    remove(millid) {
-        return this.deviceService.deleteById(millid);
+    deleteByImeiController(imei) {
+        return this.deviceService.deleteByImei(imei);
     }
 };
 exports.DeviceController = DeviceController;
@@ -56,33 +56,33 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], DeviceController.prototype, "findAll", null);
 __decorate([
-    (0, common_1.Get)(':millid'),
-    (0, swagger_1.ApiParam)({ name: 'millid', example: 'mill-123456' }),
-    (0, swagger_1.ApiOperation)({ summary: 'Get device by millid' }),
-    __param(0, (0, common_1.Param)('millid')),
+    (0, common_1.Get)('imei/:imei'),
+    (0, swagger_1.ApiParam)({ name: 'imei', example: '8f7d6623071fd85c' }),
+    (0, swagger_1.ApiOperation)({ summary: 'Get device by IMEI' }),
+    __param(0, (0, common_1.Param)('imei')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
-], DeviceController.prototype, "findOne", null);
+], DeviceController.prototype, "findByImei", null);
 __decorate([
-    (0, common_1.Patch)(':millid'),
-    (0, swagger_1.ApiParam)({ name: 'millid', example: 'mill-123456' }),
-    (0, swagger_1.ApiOperation)({ summary: 'Update device information by millid' }),
-    __param(0, (0, common_1.Param)('millid')),
+    (0, common_1.Patch)('imei/:imei'),
+    (0, swagger_1.ApiParam)({ name: 'imei', example: '8f7d6623071fd85c' }),
+    (0, swagger_1.ApiOperation)({ summary: 'Update device information by IMEI' }),
+    __param(0, (0, common_1.Param)('imei')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, update_device_dto_1.UpdateDeviceDto]),
     __metadata("design:returntype", void 0)
-], DeviceController.prototype, "update", null);
+], DeviceController.prototype, "updateByImeiController", null);
 __decorate([
-    (0, common_1.Delete)(':millid'),
-    (0, swagger_1.ApiParam)({ name: 'millid', example: 'mill-123456' }),
-    (0, swagger_1.ApiOperation)({ summary: 'Delete device by millid' }),
-    __param(0, (0, common_1.Param)('millid')),
+    (0, common_1.Delete)('imei/:imei'),
+    (0, swagger_1.ApiParam)({ name: 'imei', example: '8f7d6623071fd85c' }),
+    (0, swagger_1.ApiOperation)({ summary: 'Delete device by IMEI' }),
+    __param(0, (0, common_1.Param)('imei')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
-], DeviceController.prototype, "remove", null);
+], DeviceController.prototype, "deleteByImeiController", null);
 exports.DeviceController = DeviceController = __decorate([
     (0, swagger_1.ApiTags)('Device'),
     (0, common_1.Controller)('device'),

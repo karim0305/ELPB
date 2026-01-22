@@ -89,7 +89,7 @@ export class CreateDeviceDto {
   internetStatus: boolean;
 
   @ApiPropertyOptional({
-    example: null,
+    example: 'ABCDEF123456789',
     description: 'IMEI (usually unavailable due to OS restrictions)',
   })
   @IsOptional()
@@ -99,8 +99,18 @@ export class CreateDeviceDto {
   @ApiPropertyOptional({
     example: '02:00:00:00:00:00',
     description: 'Randomized MAC address on modern OS',
+    default: '02:00:00:00:00:00',
   })
   @IsOptional()
   @IsString()
   macAddress?: string;
+
+  @ApiPropertyOptional({
+    example: 'Deactive',
+    description: 'Device status',
+    default: 'Deactive',
+  })
+  @IsOptional()
+  @IsString()
+  status?: string;
 }

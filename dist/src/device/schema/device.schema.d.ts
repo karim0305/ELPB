@@ -13,6 +13,7 @@ export declare class Device extends Document {
     internetStatus: boolean;
     imei?: string;
     macAddress?: string;
+    status?: string;
 }
 export declare const DeviceSchema: import("mongoose").Schema<Device, import("mongoose").Model<Device, any, any, any, Document<unknown, any, Device, any, {}> & Device & Required<{
     _id: unknown;

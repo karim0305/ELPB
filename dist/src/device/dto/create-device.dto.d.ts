@@ -13,5 +13,6 @@ export declare class CreateDeviceDto {
     internetStatus: boolean;
     imei?: string;
     macAddress?: string;
+    status?: string;
 }
 export {};

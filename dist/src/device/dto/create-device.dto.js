@@ -61,6 +61,7 @@ class CreateDeviceDto {
     internetStatus;
     imei;
     macAddress;
+    status;
 }
 exports.CreateDeviceDto = CreateDeviceDto;
 __decorate([
@@ -118,7 +119,7 @@ __decorate([
 ], CreateDeviceDto.prototype, "internetStatus", void 0);
 __decorate([
     (0, swagger_1.ApiPropertyOptional)({
-        example: null,
+        example: 'ABCDEF123456789',
         description: 'IMEI (usually unavailable due to OS restrictions)',
     }),
     (0, class_validator_1.IsOptional)(),
@@ -129,9 +130,20 @@ __decorate([
     (0, swagger_1.ApiPropertyOptional)({
         example: '02:00:00:00:00:00',
         description: 'Randomized MAC address on modern OS',
+        default: '02:00:00:00:00:00',
     }),
     (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], CreateDeviceDto.prototype, "macAddress", void 0);
+__decorate([
+    (0, swagger_1.ApiPropertyOptional)({
+        example: 'Deactive',
+        description: 'Device status',
+        default: 'Deactive',
+    }),
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateDeviceDto.prototype, "status", void 0);
 //# sourceMappingURL=create-device.dto.js.map

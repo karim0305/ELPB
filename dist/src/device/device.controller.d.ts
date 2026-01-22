@@ -10,9 +10,9 @@ export declare class DeviceController {
     }> & {
         __v: number;
     })[]>;
-    findOne(millid: string): Promise<import("./schema/device.schema").Device>;
-    update(millid: string, dto: UpdateDeviceDto): Promise<import("./schema/device.schema").Device>;
-    remove(millid: string): Promise<{
+    findByImei(imei: string): Promise<import("./schema/device.schema").Device>;
+    updateByImeiController(imei: string, dto: UpdateDeviceDto): Promise<import("./schema/device.schema").Device>;
+    deleteByImeiController(imei: string): Promise<{
         message: string;
     }>;
 }

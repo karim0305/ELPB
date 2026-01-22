@@ -27,41 +27,44 @@ export class DeviceService {
 }
 
   // ✅ READ – BY MILLID
-  async findByMillid(millid: string): Promise<Device> {
-    const device = await this.deviceModel.findOne({ millid }).exec();
+async findByImei(imei: string): Promise<Device> {
+  const device = await this.deviceModel.findOne({ imei }).exec();
 
-    if (!device) {
-      throw new NotFoundException(`Device with millid ${millid} not found`);
-    }
-
-    return device;
+  if (!device) {
+    throw new NotFoundException(`Device with IMEI ${imei} not found`);
   }
+
+  return device;
+}
+
 
   // ✅ UPDATE – BY MILLID
-  async updateByMillid(
-    millid: string,
-    updateData: UpdateDeviceDto,
-  ): Promise<Device> {
-    const updatedDevice = await this.deviceModel.findOneAndUpdate(
-      { millid },
-      { $set: updateData },
-      { new: true, runValidators: true },
-    );
+ async updateByImei(
+  imei: string,
+  updateData: UpdateDeviceDto,
+): Promise<Device> {
+  const updatedDevice = await this.deviceModel.findOneAndUpdate(
+    { imei },           // 👈 query by IMEI instead of millid
+    { $set: updateData },
+    { new: true, runValidators: true },
+  );
 
-    if (!updatedDevice) {
-      throw new NotFoundException(`Device with millid ${millid} not found`);
-    }
-
-    return updatedDevice;
+  if (!updatedDevice) {
+    throw new NotFoundException(`Device with IMEI ${imei} not found`);
   }
 
- async deleteById(deviceId: string): Promise<{ message: string }> {
-    const deletedDevice = await this.deviceModel.findByIdAndDelete(deviceId);
+  return updatedDevice;
+}
 
-    if (!deletedDevice) {
-      throw new NotFoundException(`Device with id ${deviceId} not found`);
-    }
 
-    return { message: 'Device deleted successfully' };
+async deleteByImei(imei: string): Promise<{ message: string }> {
+  const deletedDevice = await this.deviceModel.findOneAndDelete({ imei });
+
+  if (!deletedDevice) {
+    throw new NotFoundException(`Device with IMEI ${imei} not found`);
   }
+
+  return { message: 'Device deleted successfully' };
+}
+
 }

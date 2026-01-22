@@ -22,6 +22,7 @@ let Device = class Device extends mongoose_2.Document {
     internetStatus;
     imei;
     macAddress;
+    status;
 };
 exports.Device = Device;
 __decorate([
@@ -67,6 +68,10 @@ __decorate([
     (0, mongoose_1.Prop)({ default: null }),
     __metadata("design:type", String)
 ], Device.prototype, "macAddress", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: 'Deactive' }),
+    __metadata("design:type", String)
+], Device.prototype, "status", void 0);
 exports.Device = Device = __decorate([
     (0, mongoose_1.Schema)({ timestamps: true })
 ], Device);

@@ -32,24 +32,24 @@ let DeviceService = class DeviceService {
             .populate('millid')
             .exec();
     }
-    async findByMillid(millid) {
-        const device = await this.deviceModel.findOne({ millid }).exec();
+    async findByImei(imei) {
+        const device = await this.deviceModel.findOne({ imei }).exec();
         if (!device) {
-            throw new common_1.NotFoundException(`Device with millid ${millid} not found`);
+            throw new common_1.NotFoundException(`Device with IMEI ${imei} not found`);
         }
         return device;
     }
-    async updateByMillid(millid, updateData) {
-        const updatedDevice = await this.deviceModel.findOneAndUpdate({ millid }, { $set: updateData }, { new: true, runValidators: true });
+    async updateByImei(imei, updateData) {
+        const updatedDevice = await this.deviceModel.findOneAndUpdate({ imei }, { $set: updateData }, { new: true, runValidators: true });
         if (!updatedDevice) {
-            throw new common_1.NotFoundException(`Device with millid ${millid} not found`);
+            throw new common_1.NotFoundException(`Device with IMEI ${imei} not found`);
         }
         return updatedDevice;
     }
-    async deleteById(deviceId) {
-        const deletedDevice = await this.deviceModel.findByIdAndDelete(deviceId);
+    async deleteByImei(imei) {
+        const deletedDevice = await this.deviceModel.findOneAndDelete({ imei });
         if (!deletedDevice) {
-            throw new common_1.NotFoundException(`Device with id ${deviceId} not found`);
+            throw new common_1.NotFoundException(`Device with IMEI ${imei} not found`);
         }
         return { message: 'Device deleted successfully' };
     }
