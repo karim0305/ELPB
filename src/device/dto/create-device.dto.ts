@@ -48,6 +48,14 @@ export class CreateDeviceDto {
   @IsMongoId()
   millid: string;
 
+
+  @ApiProperty({
+    example: '64cfa9a3b8c1a34f9e12abcd',
+    description: 'Elp MongoDB ObjectId',
+  })
+  @IsMongoId()
+  elpid: string;
+
   @ApiProperty({
     example: 'Pixel 7',
     description: 'Device model',

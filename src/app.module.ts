@@ -10,6 +10,7 @@ import { RegistrationModule } from './registration/registration.module';
 import { HaulageModule } from './houlage/houlage.module';
 import { DeviceModule } from './device/device.module';
 import { ArrivalModule } from './arrival/arrival.module';
+import { ElpModule } from './elp/elp.module';
 
 
 
@@ -55,6 +56,7 @@ import { ArrivalModule } from './arrival/arrival.module';
     HaulageModule,
     DeviceModule,
     ArrivalModule,
+    ElpModule,
 
   ],
   controllers: [AppController],

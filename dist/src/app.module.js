@@ -19,6 +19,7 @@ const registration_module_1 = require("./registration/registration.module");
 const houlage_module_1 = require("./houlage/houlage.module");
 const device_module_1 = require("./device/device.module");
 const arrival_module_1 = require("./arrival/arrival.module");
+const elp_module_1 = require("./elp/elp.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -63,6 +64,7 @@ exports.AppModule = AppModule = __decorate([
             houlage_module_1.HaulageModule,
             device_module_1.DeviceModule,
             arrival_module_1.ArrivalModule,
+            elp_module_1.ElpModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

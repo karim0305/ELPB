@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
+import { Elp } from 'src/elp/schema/elp.schema';
 import { MillInfo } from 'src/millinfo/schema/millinfo.schema';
 
 @Schema({ timestamps: true })
@@ -10,6 +11,14 @@ export class Device extends Document {
     required: true,
   })
   millid: Types.ObjectId;
+
+
+   @Prop({
+    type: Types.ObjectId,
+    ref: Elp.name, // 👈 must match Elp model name
+    required: true,
+  })
+  elpid: Types.ObjectId;
 
   @Prop()
   deviceModel: string;
