@@ -54,6 +54,7 @@ __decorate([
 ], LocationDto.prototype, "speed", void 0);
 class CreateDeviceDto {
     millid;
+    elpid;
     deviceModel;
     deviceBrand;
     location;
@@ -72,6 +73,14 @@ __decorate([
     (0, class_validator_1.IsMongoId)(),
     __metadata("design:type", String)
 ], CreateDeviceDto.prototype, "millid", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({
+        example: '64cfa9a3b8c1a34f9e12abcd',
+        description: 'Elp MongoDB ObjectId',
+    }),
+    (0, class_validator_1.IsMongoId)(),
+    __metadata("design:type", String)
+], CreateDeviceDto.prototype, "elpid", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
         example: 'Pixel 7',

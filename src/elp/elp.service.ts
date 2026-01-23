@@ -7,6 +7,9 @@ import { UpdateElpDto } from './dto/update-elp.dto';
 
 @Injectable()
 export class ElpService {
+  findAll() {
+    throw new Error('Method not implemented.');
+  }
   constructor(
     @InjectModel(Elp.name)
     private readonly elpModel: Model<ElpDocument>,
@@ -16,7 +19,7 @@ export class ElpService {
     return this.elpModel.create(createElpDto);
   }
 
-  async findAll(): Promise<Elp[]> {
+  async findAllElps(): Promise<Elp[]> {
     return this.elpModel.find().populate('millid').exec();
   }
 
@@ -40,4 +43,8 @@ export class ElpService {
     const result = await this.elpModel.findByIdAndDelete(id);
     if (!result) throw new NotFoundException('ELP not found');
   }
+
+  async findByMillId(millid: string) {
+  return this.elpModel.find({ millid }).exec();
+}
 }

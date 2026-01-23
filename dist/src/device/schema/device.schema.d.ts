@@ -1,6 +1,7 @@
 import { Document, Types } from 'mongoose';
 export declare class Device extends Document {
     millid: Types.ObjectId;
+    elpid: Types.ObjectId;
     deviceModel: string;
     deviceBrand: string;
     location: {

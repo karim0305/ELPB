@@ -18,6 +18,7 @@ const swagger_1 = require("@nestjs/swagger");
 const elp_service_1 = require("./elp.service");
 const create_elp_dto_1 = require("./dto/create-elp.dto");
 const update_elp_dto_1 = require("./dto/update-elp.dto");
+const common_2 = require("@nestjs/common");
 let ElpController = class ElpController {
     elpService;
     constructor(elpService) {
@@ -26,7 +27,13 @@ let ElpController = class ElpController {
     create(createElpDto) {
         return this.elpService.create(createElpDto);
     }
-    findAll() {
+    findAllElps() {
+        return this.elpService.findAllElps();
+    }
+    findAll(millid) {
+        if (millid) {
+            return this.elpService.findByMillId(millid);
+        }
         return this.elpService.findAll();
     }
     findOne(id) {
@@ -54,6 +61,15 @@ __decorate([
     (0, swagger_1.ApiOperation)({ summary: 'Get all ELPs' }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], ElpController.prototype, "findAllElps", null);
+__decorate([
+    (0, common_1.Get)(),
+    (0, swagger_1.ApiOperation)({ summary: 'Get all ELPs or filter by millid' }),
+    (0, swagger_1.ApiQuery)({ name: 'millid', required: false, example: '696b44fa74777afd475766b6' }),
+    __param(0, (0, common_2.Query)('millid')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], ElpController.prototype, "findAll", null);
 __decorate([

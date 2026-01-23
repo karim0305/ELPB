@@ -12,9 +12,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.DeviceSchema = exports.Device = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
+const elp_schema_1 = require("../../elp/schema/elp.schema");
 const millinfo_schema_1 = require("../../millinfo/schema/millinfo.schema");
 let Device = class Device extends mongoose_2.Document {
     millid;
+    elpid;
     deviceModel;
     deviceBrand;
     location;
@@ -33,6 +35,14 @@ __decorate([
     }),
     __metadata("design:type", mongoose_2.Types.ObjectId)
 ], Device.prototype, "millid", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({
+        type: mongoose_2.Types.ObjectId,
+        ref: elp_schema_1.Elp.name,
+        required: true,
+    }),
+    __metadata("design:type", mongoose_2.Types.ObjectId)
+], Device.prototype, "elpid", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)

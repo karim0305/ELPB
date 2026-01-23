@@ -11,11 +11,13 @@ import {
   ApiBody,
   ApiOperation,
   ApiParam,
+  ApiQuery,
   ApiTags,
 } from '@nestjs/swagger';
 import { ElpService } from './elp.service';
 import { CreateElpDto } from './dto/create-elp.dto';
 import { UpdateElpDto } from './dto/update-elp.dto';
+import { Query } from '@nestjs/common';
 
 @ApiTags('ELP')
 @Controller('elp')
@@ -31,7 +33,17 @@ export class ElpController {
 
   @Get()
   @ApiOperation({ summary: 'Get all ELPs' })
-  findAll() {
+  findAllElps() {
+    return this.elpService.findAllElps();
+  }
+
+  @Get()
+  @ApiOperation({ summary: 'Get all ELPs or filter by millid' })
+  @ApiQuery({ name: 'millid', required: false, example: '696b44fa74777afd475766b6' })
+  findAll(@Query('millid') millid?: string) {
+    if (millid) {
+      return this.elpService.findByMillId(millid);
+    }
     return this.elpService.findAll();
   }
 

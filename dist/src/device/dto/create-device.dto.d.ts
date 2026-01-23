@@ -6,6 +6,7 @@ declare class LocationDto {
 }
 export declare class CreateDeviceDto {
     millid: string;
+    elpid: string;
     deviceModel: string;
     deviceBrand: string;
     location: LocationDto;

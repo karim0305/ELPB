@@ -19,13 +19,16 @@ const mongoose_2 = require("mongoose");
 const elp_schema_1 = require("./schema/elp.schema");
 let ElpService = class ElpService {
     elpModel;
+    findAll() {
+        throw new Error('Method not implemented.');
+    }
     constructor(elpModel) {
         this.elpModel = elpModel;
     }
     async create(createElpDto) {
         return this.elpModel.create(createElpDto);
     }
-    async findAll() {
+    async findAllElps() {
         return this.elpModel.find().populate('millid').exec();
     }
     async findOne(id) {
@@ -44,6 +47,9 @@ let ElpService = class ElpService {
         const result = await this.elpModel.findByIdAndDelete(id);
         if (!result)
             throw new common_1.NotFoundException('ELP not found');
+    }
+    async findByMillId(millid) {
+        return this.elpModel.find({ millid }).exec();
     }
 };
 exports.ElpService = ElpService;
