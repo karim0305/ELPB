@@ -19,6 +19,7 @@ export class RegistrationService {
       millid: new Types.ObjectId(dto.millid),
       deviceId: new Types.ObjectId(dto.deviceId),
       elpId: new Types.ObjectId(dto.elpId),
+       gps: dto.gps ? { latitude: dto.gps.latitude, longitude: dto.gps.longitude } : undefined,
     });
 
     const saved = await created.save();
