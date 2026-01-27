@@ -12,15 +12,22 @@ export class RegistrationService {
   ) {}
 
   // CREATE
-  async create(dto: CreateRegistrationDto): Promise<Registration> {
+ async create(dto: CreateRegistrationDto): Promise<Registration> {
+  try {
     const created = new this.registrationModel({
       ...dto,
       millid: new Types.ObjectId(dto.millid),
+      deviceId: new Types.ObjectId(dto.deviceId),
+      elpId: new Types.ObjectId(dto.elpId),
     });
 
     const saved = await created.save();
     return saved.toObject();
+  } catch (err) {
+    console.error('Registration creation error:', err);
+    throw err; // Let NestJS handle it
   }
+}
 
   // FIND ALL
   async findAll(): Promise<Registration[]> {
