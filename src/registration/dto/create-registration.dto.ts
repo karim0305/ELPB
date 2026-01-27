@@ -25,29 +25,13 @@ export class CreateRegistrationDto {
   @IsNotEmpty()
   deviceId: string;
 
-  @ApiProperty({ example: 'COMP001', description: 'Company code' })
-  @IsString()
-  companyCode: string;
 
-  @ApiProperty({ example: 'Millid Corporation', description: 'Company name' })
-  @IsString()
-  companyName: string;
 
-  @ApiProperty({ example: 'LP1001', description: 'Logistics partner code' })
-  @IsString()
-  lpCode: string;
+  @ApiProperty({ example: '64cfa9a3b8c1a34f9e12abcd', description: 'Unique id of ELp' })
+  @IsMongoId()
+  @IsNotEmpty()
+  elpId: string;
 
-  @ApiProperty({ example: 'Logistics Partner 1', description: 'Logistics partner name' })
-  @IsString()
-  lpName: string;
-
-  @ApiProperty({ example: 'SN123456789', description: 'Device serial number' })
-  @IsString()
-  serialNumber: string;
-
-  @ApiProperty({ example: 'IMEI123456789012345', description: 'Device IMEI number' })
-  @IsString()
-  imei: string;
 
   @ApiProperty({
     example: { latitude: 37.7749, longitude: -122.4194 },
@@ -59,11 +43,7 @@ export class CreateRegistrationDto {
   @Type(() => GpsDto)
   gps?: GpsDto;
 
-  @ApiProperty({ example: 5.2, description: 'GPS distance in km', required: false })
-  @IsOptional()
-  @IsNumber()
-  gpsDistance?: number;
-
+  
   @ApiProperty({ example: 'TWR1001', description: 'Tower ID', required: false })
   @IsOptional()
   @IsString()
@@ -72,17 +52,12 @@ export class CreateRegistrationDto {
   @ApiProperty({ example: 'HLG001', description: 'Haulage code', required: false })
   @IsOptional()
   @IsString()
-  haulageCode?: string;
+  haulage?: string;
 
-  @ApiProperty({ example: 'Haulage Company 1', description: 'Haulage name', required: false })
+  @ApiProperty({ example: 'DOC12345', description: 'Document number', required: false })
   @IsOptional()
   @IsString()
-  haulageName?: string;
-
-  @ApiProperty({ example: 'REG1234', description: 'Registration number', required: false })
-  @IsOptional()
-  @IsString()
-  registrationNumber?: string;
+  documentNo?: string;
 
   @ApiProperty({ example: 'VEH1234', description: 'Vehicle number', required: false })
   @IsOptional()
@@ -104,41 +79,16 @@ export class CreateRegistrationDto {
   @IsString()
   vehicleImage?: string;
 
-  @ApiProperty({ example: '2026-01-15', description: 'Date of registration', required: false })
-  @IsOptional()
-  @IsDate()
-  date?: Date;
-
-  @ApiProperty({ example: '10:30', description: 'Time of registration', required: false })
-  @IsOptional()
-  @IsString()
-  time?: string;
 
   @ApiProperty({ example: 'All checks passed', description: 'Remarks', required: false })
   @IsOptional()
   @IsString()
   remarks?: string;
 
-  @ApiProperty({ example: 'DOC12345', description: 'Document number', required: false })
-  @IsOptional()
-  @IsString()
-  documentNo?: string;
+  
 
-  @ApiProperty({ example: '24 Hours 0 Minutes', description: 'Standard time', required: false })
-  @IsOptional()
-  @IsString()
-  standardTime?: string;
-
-  @ApiProperty({ example: '1 Hour 37 Minutes', description: 'Time taken', required: false })
-  @IsOptional()
-  @IsString()
-  timeTaken?: string;
-
-  @ApiProperty({ example: '22 Hours 22 Minutes Early', description: 'Difference', required: false })
-  @IsOptional()
-  @IsString()
-  difference?: string;
-
+  
+ 
 
   @ApiProperty({ example: 'Pending', description: 'Pending,Accepted,Rejected' })
   @IsString()

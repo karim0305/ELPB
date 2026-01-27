@@ -17,29 +17,16 @@ export declare const GpsSchema: import("mongoose").Schema<Gps, import("mongoose"
 export declare class Registration {
     millid: Types.ObjectId;
     deviceId: Types.ObjectId;
-    companyCode: string;
-    companyName: string;
-    lpCode: string;
-    lpName: string;
-    serialNumber: string;
-    imei: string;
+    elpId: Types.ObjectId;
     gps?: Gps;
-    gpsDistance?: number;
     towerId?: string;
-    haulageCode?: string;
-    haulageName?: string;
-    registrationNumber?: string;
+    haulage?: string;
     vehicleNumber?: string;
-    permitImage?: string;
+    documentNo?: string;
     driverImage?: string;
     vehicleImage?: string;
-    date?: Date;
-    time?: string;
+    permitImage?: string;
     remarks?: string;
-    documentNo?: string;
-    standardTime?: string;
-    timeTaken?: string;
-    difference?: string;
     status: string;
 }
 export declare const RegistrationSchema: import("mongoose").Schema<Registration, import("mongoose").Model<Registration, any, any, any, Document<unknown, any, Registration, any, {}> & Registration & {

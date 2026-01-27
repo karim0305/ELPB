@@ -2,6 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 import { Types } from 'mongoose';
 import { Device } from 'src/device/schema/device.schema';
+import { Elp } from 'src/elp/schema/elp.schema';
 import { MillInfo } from 'src/millinfo/schema/millinfo.schema';
 
 export type RegistrationDocument = Registration & Document;
@@ -37,47 +38,33 @@ export class Registration {
   deviceId: Types.ObjectId;
 
 
-  @Prop({ required: true })
-  companyCode: string;
 
-  @Prop({ required: true })
-  companyName: string;
 
-  @Prop({ required: true })
-  lpCode: string;
+  @Prop({ 
+    type: Types.ObjectId, 
+    ref: Elp.name, 
+    required: true 
+  })
+  elpId: Types.ObjectId;
 
-  @Prop({ required: true })
-  lpName: string;
 
-  @Prop({ required: true })
-  serialNumber: string;
-
-  @Prop({ required: true })
-  imei: string;
 
   @Prop({ type: GpsSchema }) // nested object
   gps?: Gps;
 
-  @Prop()
-  gpsDistance?: number;
 
   @Prop()
   towerId?: string;
 
   @Prop()
-  haulageCode?: string;
-
-  @Prop()
-  haulageName?: string;
-
-  @Prop()
-  registrationNumber?: string;
+  haulage?: string;
 
   @Prop()
   vehicleNumber?: string;
 
+
   @Prop()
-  permitImage?: string;
+  documentNo?: string;
 
   @Prop()
   driverImage?: string;
@@ -85,26 +72,13 @@ export class Registration {
   @Prop()
   vehicleImage?: string;
 
-  @Prop({ type: Date })
-  date?: Date;
 
   @Prop()
-  time?: string;
+  permitImage?: string;
 
   @Prop()
   remarks?: string;
-
-  @Prop()
-  documentNo?: string;
-
-  @Prop()
-  standardTime?: string;
-
-  @Prop()
-  timeTaken?: string;
-
-  @Prop()
-  difference?: string;
+  
 
   @Prop({ required: true })
   status: string;
