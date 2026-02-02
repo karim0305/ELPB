@@ -61,7 +61,7 @@ class CreateDeviceDto {
     approximateLocation;
     internetStatus;
     imei;
-    macAddress;
+    Tawerid;
     status;
 }
 exports.CreateDeviceDto = CreateDeviceDto;
@@ -137,14 +137,14 @@ __decorate([
 ], CreateDeviceDto.prototype, "imei", void 0);
 __decorate([
     (0, swagger_1.ApiPropertyOptional)({
-        example: '02:00:00:00:00:00',
-        description: 'Randomized MAC address on modern OS',
-        default: '02:00:00:00:00:00',
+        example: '354543535',
+        description: 'Randomized Tawerid',
+        default: '0',
     }),
     (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
-], CreateDeviceDto.prototype, "macAddress", void 0);
+], CreateDeviceDto.prototype, "Tawerid", void 0);
 __decorate([
     (0, swagger_1.ApiPropertyOptional)({
         example: 'Deactive',

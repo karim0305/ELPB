@@ -105,13 +105,13 @@ export class CreateDeviceDto {
   imei?: string;
 
   @ApiPropertyOptional({
-    example: '02:00:00:00:00:00',
-    description: 'Randomized MAC address on modern OS',
-    default: '02:00:00:00:00:00',
+    example: '354543535',
+    description: 'Randomized Tawerid',
+    default: '0',
   })
   @IsOptional()
   @IsString()
-  macAddress?: string;
+ Tawerid?: string;
 
   @ApiPropertyOptional({
     example: 'Deactive',

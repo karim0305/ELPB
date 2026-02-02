@@ -13,7 +13,7 @@ export declare class CreateDeviceDto {
     approximateLocation?: string;
     internetStatus: boolean;
     imei?: string;
-    macAddress?: string;
+    Tawerid?: string;
     status?: string;
 }
 export {};

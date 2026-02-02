@@ -51,7 +51,7 @@ export class Device extends Document {
   imei?: string;
 
   @Prop({ default: null })
-  macAddress?: string;
+  Tawerid?: string;
    
   @Prop({ default: 'Deactive' })
   status?: string;

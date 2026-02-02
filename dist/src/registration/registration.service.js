@@ -23,12 +23,21 @@ let RegistrationService = class RegistrationService {
         this.registrationModel = registrationModel;
     }
     async create(dto) {
-        const created = new this.registrationModel({
-            ...dto,
-            millid: new mongoose_2.Types.ObjectId(dto.millid),
-        });
-        const saved = await created.save();
-        return saved.toObject();
+        try {
+            const created = new this.registrationModel({
+                ...dto,
+                millid: new mongoose_2.Types.ObjectId(dto.millid),
+                deviceId: new mongoose_2.Types.ObjectId(dto.deviceId),
+                elpId: new mongoose_2.Types.ObjectId(dto.elpId),
+                gps: dto.gps ? { latitude: dto.gps.latitude, longitude: dto.gps.longitude } : undefined,
+            });
+            const saved = await created.save();
+            return saved.toObject();
+        }
+        catch (err) {
+            console.error('Registration creation error:', err);
+            throw err;
+        }
     }
     async findAll() {
         const registrations = await this.registrationModel
