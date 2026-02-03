@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, Put, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Put, Delete, Query } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { RegistrationService } from './registration.service'; // ✅ path must be correct
 import { Registration, RegistrationDocument } from './schema/registration.schema';
@@ -19,10 +19,28 @@ export class RegistrationController {
     return this.registrationService.findAll(); // ✅ must exist
   }
 
+
+
+   @Get('by-mill/:millid')
+  getByMillId(
+    @Param('millid') millid: string,
+    @Query('deviceId') deviceId: string,
+  ) {
+    return this.registrationService.getByMillId(
+      millid,
+      deviceId,
+    );
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string): Promise<Registration> {
     return this.registrationService.findOne(id);
   }
+
+
+ 
+
+
 
   @Put(':id')
   update(@Param('id') id: string, @Body() updateDto: Partial<CreateRegistrationDto>): Promise<Registration> {

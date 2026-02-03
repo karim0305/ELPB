@@ -124,4 +124,24 @@ async create(dto: CreateRegistrationDto): Promise<Registration> {
 
     return registrations.map(r => r.toObject());
   }
+
+
+   async getByMillId(
+    millid: string,
+    deviceId?: string,
+  ) {
+    const query: any = {
+      millid: new Types.ObjectId(millid),
+    };
+
+   
+
+    if (deviceId) {
+      query.deviceId = new Types.ObjectId(deviceId);
+    }
+
+    return this.registrationModel
+      .find(query)
+      .sort({ createdAt: -1 });
+  }
 }

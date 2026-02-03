@@ -101,6 +101,17 @@ let RegistrationService = class RegistrationService {
             .exec();
         return registrations.map(r => r.toObject());
     }
+    async getByMillId(millid, deviceId) {
+        const query = {
+            millid: new mongoose_2.Types.ObjectId(millid),
+        };
+        if (deviceId) {
+            query.deviceId = new mongoose_2.Types.ObjectId(deviceId);
+        }
+        return this.registrationModel
+            .find(query)
+            .sort({ createdAt: -1 });
+    }
 };
 exports.RegistrationService = RegistrationService;
 exports.RegistrationService = RegistrationService = __decorate([

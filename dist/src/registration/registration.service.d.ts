@@ -10,4 +10,9 @@ export declare class RegistrationService {
     update(id: string, updateDto: Partial<CreateRegistrationDto>): Promise<Registration>;
     remove(id: string): Promise<Registration>;
     findByMill(millid: string): Promise<Registration[]>;
+    getByMillId(millid: string, deviceId?: string): Promise<(import("mongoose").Document<unknown, {}, RegistrationDocument, {}, {}> & Registration & import("mongoose").Document<unknown, any, any, Record<string, any>, {}> & Required<{
+        _id: unknown;
+    }> & {
+        __v: number;
+    })[]>;
 }
