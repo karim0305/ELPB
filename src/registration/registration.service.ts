@@ -12,23 +12,45 @@ export class RegistrationService {
   ) {}
 
   // CREATE
- async create(dto: CreateRegistrationDto): Promise<Registration> {
+async create(dto: CreateRegistrationDto): Promise<Registration> {
   try {
+    const lastRegistration = await this.registrationModel
+      .findOne()
+      .sort({ createdAt: -1 });
+
+    let nextNumber = 1001;
+
+    if (lastRegistration?.regid) {
+      const lastNum = parseInt(
+        lastRegistration.regid.replace('CSML', ''),
+        10,
+      );
+      nextNumber = lastNum + 1;
+    }
+
+    const regid = `CSML${nextNumber}`;
+
     const created = new this.registrationModel({
       ...dto,
+      regid, // ✅ injected here
       millid: new Types.ObjectId(dto.millid),
       deviceId: new Types.ObjectId(dto.deviceId),
       elpId: new Types.ObjectId(dto.elpId),
-       gps: dto.gps ? { latitude: dto.gps.latitude, longitude: dto.gps.longitude } : undefined,
+      gps: dto.gps
+        ? {
+            latitude: dto.gps.latitude,
+            longitude: dto.gps.longitude,
+          }
+        : undefined,
+      status: 'Pending',
     });
 
-    const saved = await created.save();
-    return saved.toObject();
-  } catch (err) {
-    console.error('Registration creation error:', err);
-    throw err; // Let NestJS handle it
+    return await created.save();
+  } catch (error) {
+    throw error;
   }
 }
+
 
   // FIND ALL
   async findAll(): Promise<Registration[]> {

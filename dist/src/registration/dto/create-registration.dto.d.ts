@@ -8,6 +8,7 @@ export declare class CreateRegistrationDto {
     elpId: string;
     gps?: GpsDto;
     towerId?: string;
+    regid?: string;
     haulage?: string;
     documentNo?: string;
     vehicleNumber?: string;

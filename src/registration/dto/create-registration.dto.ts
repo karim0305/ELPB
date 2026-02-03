@@ -49,6 +49,15 @@ export class CreateRegistrationDto {
   @IsString()
   towerId?: string;
 
+
+  @ApiProperty({ example: 'CSML1001', description: 'Registration Number', required: false })
+  @IsOptional()
+  @IsString()
+  regid?: string;
+
+
+
+
   @ApiProperty({ example: 'HLG001', description: 'Haulage code', required: false })
   @IsOptional()
   @IsString()

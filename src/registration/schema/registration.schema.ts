@@ -56,6 +56,11 @@ export class Registration {
   @Prop()
   towerId?: string;
 
+
+@Prop({ unique: true, required: true, index: true })
+regid: string;
+
+
   @Prop()
   haulage?: string;
 

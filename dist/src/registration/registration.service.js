@@ -24,19 +24,33 @@ let RegistrationService = class RegistrationService {
     }
     async create(dto) {
         try {
+            const lastRegistration = await this.registrationModel
+                .findOne()
+                .sort({ createdAt: -1 });
+            let nextNumber = 1001;
+            if (lastRegistration?.regid) {
+                const lastNum = parseInt(lastRegistration.regid.replace('CSML', ''), 10);
+                nextNumber = lastNum + 1;
+            }
+            const regid = `CSML${nextNumber}`;
             const created = new this.registrationModel({
                 ...dto,
+                regid,
                 millid: new mongoose_2.Types.ObjectId(dto.millid),
                 deviceId: new mongoose_2.Types.ObjectId(dto.deviceId),
                 elpId: new mongoose_2.Types.ObjectId(dto.elpId),
-                gps: dto.gps ? { latitude: dto.gps.latitude, longitude: dto.gps.longitude } : undefined,
+                gps: dto.gps
+                    ? {
+                        latitude: dto.gps.latitude,
+                        longitude: dto.gps.longitude,
+                    }
+                    : undefined,
+                status: 'Pending',
             });
-            const saved = await created.save();
-            return saved.toObject();
+            return await created.save();
         }
-        catch (err) {
-            console.error('Registration creation error:', err);
-            throw err;
+        catch (error) {
+            throw error;
         }
     }
     async findAll() {

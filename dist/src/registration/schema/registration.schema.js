@@ -38,6 +38,7 @@ let Registration = class Registration {
     elpId;
     gps;
     towerId;
+    regid;
     haulage;
     vehicleNumber;
     documentNo;
@@ -80,6 +81,10 @@ __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
 ], Registration.prototype, "towerId", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ unique: true, required: true, index: true }),
+    __metadata("design:type", String)
+], Registration.prototype, "regid", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)

@@ -20,6 +20,7 @@ export declare class Registration {
     elpId: Types.ObjectId;
     gps?: Gps;
     towerId?: string;
+    regid: string;
     haulage?: string;
     vehicleNumber?: string;
     documentNo?: string;

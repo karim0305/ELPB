@@ -34,6 +34,7 @@ class CreateRegistrationDto {
     elpId;
     gps;
     towerId;
+    regid;
     haulage;
     documentNo;
     vehicleNumber;
@@ -79,6 +80,12 @@ __decorate([
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], CreateRegistrationDto.prototype, "towerId", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ example: 'CSML1001', description: 'Registration Number', required: false }),
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateRegistrationDto.prototype, "regid", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({ example: 'HLG001', description: 'Haulage code', required: false }),
     (0, class_validator_1.IsOptional)(),
