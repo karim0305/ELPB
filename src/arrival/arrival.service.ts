@@ -16,7 +16,7 @@ export class ArrivalService {
     const saved = await createdArrival.save();
 
     // Populate mill, device, registration after save
-    return saved.populate('millid deviceId registrationId');
+    return saved.populate('millid deviceId regid');
   }
 
   // Find all Arrivals with populated references

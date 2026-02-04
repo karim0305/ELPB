@@ -25,7 +25,7 @@ let ArrivalService = class ArrivalService {
     async create(createArrivalDto) {
         const createdArrival = new this.arrivalModel(createArrivalDto);
         const saved = await createdArrival.save();
-        return saved.populate('millid deviceId registrationId');
+        return saved.populate('millid deviceId regid');
     }
     async findAll() {
         return this.arrivalModel

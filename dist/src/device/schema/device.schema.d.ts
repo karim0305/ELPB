@@ -11,7 +11,7 @@ export declare class Device extends Document {
         speed?: number;
     };
     approximateLocation: string;
-    internetStatus: boolean;
+    type: string;
     imei?: string;
     Tawerid?: string;
     status?: string;

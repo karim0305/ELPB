@@ -59,7 +59,7 @@ class CreateDeviceDto {
     deviceBrand;
     location;
     approximateLocation;
-    internetStatus;
+    type;
     imei;
     Tawerid;
     status;
@@ -123,9 +123,9 @@ __decorate([
         example: true,
         description: 'Internet connectivity status',
     }),
-    (0, class_validator_1.IsBoolean)(),
-    __metadata("design:type", Boolean)
-], CreateDeviceDto.prototype, "internetStatus", void 0);
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateDeviceDto.prototype, "type", void 0);
 __decorate([
     (0, swagger_1.ApiPropertyOptional)({
         example: 'ABCDEF123456789',

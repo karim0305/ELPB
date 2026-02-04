@@ -1,6 +1,7 @@
-import { IsString, IsOptional, IsDate, IsNumber, IsObject, IsMongoId, IsNotEmpty } from 'class-validator';
+import { IsString, IsOptional, IsDate, IsNumber, IsObject, IsMongoId, IsNotEmpty, ValidateNested } from 'class-validator';
 import { Types } from 'mongoose';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { Type } from 'class-transformer';
 
 export class GpsDto {
   @ApiProperty({ example: 12.9716, description: 'Latitude of the device' })
@@ -26,106 +27,76 @@ export class CreateArrivalDto {
   @IsNotEmpty()
   deviceId: string;
 
-  
-  @ApiProperty({ example: '64cfa9a3b8c1a34f9e12abcd', description: 'Registration MongoDB ObjectId' })
+
+
+  @ApiProperty({ example: '64cfa9a3b8c1a34f9e12abcd', description: 'Unique id of ELp' })
   @IsMongoId()
   @IsNotEmpty()
-  registrationId: string;
-
-  @ApiProperty({ example: 'COMP123', description: 'Company code' })
-  @IsString()
-  companyCode: string;
-
-  @ApiProperty({ example: 'Acme Corp', description: 'Company name' })
-  @IsString()
-  companyName: string;
-
-  @ApiProperty({ example: 'LP456', description: 'LP code' })
-  @IsString()
-  lpCode: string; 
-
-  @ApiProperty({ example: 'John Doe', description: 'LP name' })
-  @IsString()
-  lpName: string;
-
-  @ApiProperty({ example: 'SN789', description: 'Device serial number' })
-  @IsString()
-  serialNumber: string;
-
-  @ApiProperty({ example: 'IMEI1234567890', description: 'Device IMEI number' })
-  @IsString()
-  imei: string;
+  elpId: string;
 
 
-  @ApiPropertyOptional({ type: GpsDto, description: 'GPS coordinates of the device' })
+  @ApiProperty({
+    example: { latitude: 37.7749, longitude: -122.4194 },
+    description: 'GPS coordinates',
+    required: false,
+  })
   @IsOptional()
+  @ValidateNested()
+  @Type(() => GpsDto)
   gps?: GpsDto;
 
-  @ApiPropertyOptional({ example: 15.5, description: 'Distance from tower in km' })
+  
+  @ApiProperty({ example: 'TWR1001', description: 'Tower ID', required: false })
   @IsOptional()
-  gpsDistance?: number;
-
-  @ApiPropertyOptional({ example: 'TWR123', description: 'Tower ID' })
-  @IsOptional()
+  @IsString()
   towerId?: string;
 
-  @ApiPropertyOptional({ example: 'H123', description: 'Haulage code' })
-  @IsOptional()
-  haulageCode?: string;
 
-  @ApiPropertyOptional({ example: 'Haulage Corp', description: 'Haulage name' })
+  @ApiProperty({ example: 'CSML1001', description: 'Registration Number', required: false })
   @IsOptional()
-  haulageName?: string;
+  @IsString()
+  regid?: string;
 
-  @ApiPropertyOptional({ example: 'REG123', description: 'Registration number' })
-  @IsOptional()
-  registrationNumber?: string;
 
-  @ApiPropertyOptional({ example: 'MH12AB1234', description: 'Vehicle number' })
-  @IsOptional()
-  vehicleNumber?: string;
 
-  @ApiPropertyOptional({ example: 'permit.jpg', description: 'Permit image URL' })
-  @IsOptional()
-  permitImage?: string;
 
-  @ApiPropertyOptional({ example: 'driver.jpg', description: 'Driver image URL' })
+  @ApiProperty({ example: 'HLG001', description: 'Haulage code', required: false })
   @IsOptional()
-  driverImage?: string;
+  @IsString()
+  haulage?: string;
 
-  @ApiPropertyOptional({ example: 'vehicle.jpg', description: 'Vehicle image URL' })
+  @ApiProperty({ example: 'DOC12345', description: 'Document number', required: false })
   @IsOptional()
-  vehicleImage?: string;
-
-  @ApiPropertyOptional({ example: '2026-01-17', description: 'Arrival date' })
-  @IsOptional()
-  date?: Date;
-
-  @ApiPropertyOptional({ example: '14:30', description: 'Arrival time' })
-  @IsOptional()
-  time?: string;
-
-  @ApiPropertyOptional({ example: 'On schedule', description: 'Remarks' })
-  @IsOptional()
-  remarks?: string;
-
-  @ApiPropertyOptional({ example: 'DOC456', description: 'Document number' })
-  @IsOptional()
+  @IsString()
   documentNo?: string;
 
-  @ApiPropertyOptional({ example: '10:00', description: 'Standard expected time' })
+  @ApiProperty({ example: 'VEH1234', description: 'Vehicle number', required: false })
   @IsOptional()
-  standardTime?: string;
+  @IsString()
+  vehicleNumber?: string;
 
-  @ApiPropertyOptional({ example: '00:30', description: 'Time taken' })
+  @ApiProperty({ example: 'permit.png', description: 'Permit image filename', required: false })
   @IsOptional()
-  timeTaken?: string;
+  @IsString()
+  permitImage?: string;
 
-  @ApiPropertyOptional({ example: '0:30', description: 'Difference from standard time' })
+  @ApiProperty({ example: 'driver.png', description: 'Driver image filename', required: false })
   @IsOptional()
-  difference?: string;
+  @IsString()
+  driverImage?: string;
 
- @ApiProperty({ example: 'Pending', description: 'Pending,Accepted,Rejected' })
+  @ApiProperty({ example: 'vehicle.png', description: 'Vehicle image filename', required: false })
+  @IsOptional()
+  @IsString()
+  vehicleImage?: string;
+
+
+  @ApiProperty({ example: 'All checks passed', description: 'Remarks', required: false })
+  @IsOptional()
+  @IsString()
+  remarks?: string;
+
+  @ApiProperty({ example: 'Pending', description: 'Pending,Accepted,Rejected' })
   @IsString()
   status: string; // new required field
 }

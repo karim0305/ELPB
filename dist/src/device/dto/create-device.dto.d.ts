@@ -11,7 +11,7 @@ export declare class CreateDeviceDto {
     deviceBrand: string;
     location: LocationDto;
     approximateLocation?: string;
-    internetStatus: boolean;
+    type: string;
     imei?: string;
     Tawerid?: string;
     status?: string;

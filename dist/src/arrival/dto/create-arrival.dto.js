@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateArrivalDto = exports.GpsDto = void 0;
 const class_validator_1 = require("class-validator");
 const swagger_1 = require("@nestjs/swagger");
+const class_transformer_1 = require("class-transformer");
 class GpsDto {
     latitude;
     longitude;
@@ -30,30 +31,17 @@ __decorate([
 class CreateArrivalDto {
     millid;
     deviceId;
-    registrationId;
-    companyCode;
-    companyName;
-    lpCode;
-    lpName;
-    serialNumber;
-    imei;
+    elpId;
     gps;
-    gpsDistance;
     towerId;
-    haulageCode;
-    haulageName;
-    registrationNumber;
+    regid;
+    haulage;
+    documentNo;
     vehicleNumber;
     permitImage;
     driverImage;
     vehicleImage;
-    date;
-    time;
     remarks;
-    documentNo;
-    standardTime;
-    timeTaken;
-    difference;
     status;
 }
 exports.CreateArrivalDto = CreateArrivalDto;
@@ -70,126 +58,76 @@ __decorate([
     __metadata("design:type", String)
 ], CreateArrivalDto.prototype, "deviceId", void 0);
 __decorate([
-    (0, swagger_1.ApiProperty)({ example: '64cfa9a3b8c1a34f9e12abcd', description: 'Registration MongoDB ObjectId' }),
+    (0, swagger_1.ApiProperty)({ example: '64cfa9a3b8c1a34f9e12abcd', description: 'Unique id of ELp' }),
     (0, class_validator_1.IsMongoId)(),
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
-], CreateArrivalDto.prototype, "registrationId", void 0);
+], CreateArrivalDto.prototype, "elpId", void 0);
 __decorate([
-    (0, swagger_1.ApiProperty)({ example: 'COMP123', description: 'Company code' }),
-    (0, class_validator_1.IsString)(),
-    __metadata("design:type", String)
-], CreateArrivalDto.prototype, "companyCode", void 0);
-__decorate([
-    (0, swagger_1.ApiProperty)({ example: 'Acme Corp', description: 'Company name' }),
-    (0, class_validator_1.IsString)(),
-    __metadata("design:type", String)
-], CreateArrivalDto.prototype, "companyName", void 0);
-__decorate([
-    (0, swagger_1.ApiProperty)({ example: 'LP456', description: 'LP code' }),
-    (0, class_validator_1.IsString)(),
-    __metadata("design:type", String)
-], CreateArrivalDto.prototype, "lpCode", void 0);
-__decorate([
-    (0, swagger_1.ApiProperty)({ example: 'John Doe', description: 'LP name' }),
-    (0, class_validator_1.IsString)(),
-    __metadata("design:type", String)
-], CreateArrivalDto.prototype, "lpName", void 0);
-__decorate([
-    (0, swagger_1.ApiProperty)({ example: 'SN789', description: 'Device serial number' }),
-    (0, class_validator_1.IsString)(),
-    __metadata("design:type", String)
-], CreateArrivalDto.prototype, "serialNumber", void 0);
-__decorate([
-    (0, swagger_1.ApiProperty)({ example: 'IMEI1234567890', description: 'Device IMEI number' }),
-    (0, class_validator_1.IsString)(),
-    __metadata("design:type", String)
-], CreateArrivalDto.prototype, "imei", void 0);
-__decorate([
-    (0, swagger_1.ApiPropertyOptional)({ type: GpsDto, description: 'GPS coordinates of the device' }),
+    (0, swagger_1.ApiProperty)({
+        example: { latitude: 37.7749, longitude: -122.4194 },
+        description: 'GPS coordinates',
+        required: false,
+    }),
     (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.ValidateNested)(),
+    (0, class_transformer_1.Type)(() => GpsDto),
     __metadata("design:type", GpsDto)
 ], CreateArrivalDto.prototype, "gps", void 0);
 __decorate([
-    (0, swagger_1.ApiPropertyOptional)({ example: 15.5, description: 'Distance from tower in km' }),
+    (0, swagger_1.ApiProperty)({ example: 'TWR1001', description: 'Tower ID', required: false }),
     (0, class_validator_1.IsOptional)(),
-    __metadata("design:type", Number)
-], CreateArrivalDto.prototype, "gpsDistance", void 0);
-__decorate([
-    (0, swagger_1.ApiPropertyOptional)({ example: 'TWR123', description: 'Tower ID' }),
-    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], CreateArrivalDto.prototype, "towerId", void 0);
 __decorate([
-    (0, swagger_1.ApiPropertyOptional)({ example: 'H123', description: 'Haulage code' }),
+    (0, swagger_1.ApiProperty)({ example: 'CSML1001', description: 'Registration Number', required: false }),
     (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
-], CreateArrivalDto.prototype, "haulageCode", void 0);
+], CreateArrivalDto.prototype, "regid", void 0);
 __decorate([
-    (0, swagger_1.ApiPropertyOptional)({ example: 'Haulage Corp', description: 'Haulage name' }),
+    (0, swagger_1.ApiProperty)({ example: 'HLG001', description: 'Haulage code', required: false }),
     (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
-], CreateArrivalDto.prototype, "haulageName", void 0);
+], CreateArrivalDto.prototype, "haulage", void 0);
 __decorate([
-    (0, swagger_1.ApiPropertyOptional)({ example: 'REG123', description: 'Registration number' }),
+    (0, swagger_1.ApiProperty)({ example: 'DOC12345', description: 'Document number', required: false }),
     (0, class_validator_1.IsOptional)(),
-    __metadata("design:type", String)
-], CreateArrivalDto.prototype, "registrationNumber", void 0);
-__decorate([
-    (0, swagger_1.ApiPropertyOptional)({ example: 'MH12AB1234', description: 'Vehicle number' }),
-    (0, class_validator_1.IsOptional)(),
-    __metadata("design:type", String)
-], CreateArrivalDto.prototype, "vehicleNumber", void 0);
-__decorate([
-    (0, swagger_1.ApiPropertyOptional)({ example: 'permit.jpg', description: 'Permit image URL' }),
-    (0, class_validator_1.IsOptional)(),
-    __metadata("design:type", String)
-], CreateArrivalDto.prototype, "permitImage", void 0);
-__decorate([
-    (0, swagger_1.ApiPropertyOptional)({ example: 'driver.jpg', description: 'Driver image URL' }),
-    (0, class_validator_1.IsOptional)(),
-    __metadata("design:type", String)
-], CreateArrivalDto.prototype, "driverImage", void 0);
-__decorate([
-    (0, swagger_1.ApiPropertyOptional)({ example: 'vehicle.jpg', description: 'Vehicle image URL' }),
-    (0, class_validator_1.IsOptional)(),
-    __metadata("design:type", String)
-], CreateArrivalDto.prototype, "vehicleImage", void 0);
-__decorate([
-    (0, swagger_1.ApiPropertyOptional)({ example: '2026-01-17', description: 'Arrival date' }),
-    (0, class_validator_1.IsOptional)(),
-    __metadata("design:type", Date)
-], CreateArrivalDto.prototype, "date", void 0);
-__decorate([
-    (0, swagger_1.ApiPropertyOptional)({ example: '14:30', description: 'Arrival time' }),
-    (0, class_validator_1.IsOptional)(),
-    __metadata("design:type", String)
-], CreateArrivalDto.prototype, "time", void 0);
-__decorate([
-    (0, swagger_1.ApiPropertyOptional)({ example: 'On schedule', description: 'Remarks' }),
-    (0, class_validator_1.IsOptional)(),
-    __metadata("design:type", String)
-], CreateArrivalDto.prototype, "remarks", void 0);
-__decorate([
-    (0, swagger_1.ApiPropertyOptional)({ example: 'DOC456', description: 'Document number' }),
-    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], CreateArrivalDto.prototype, "documentNo", void 0);
 __decorate([
-    (0, swagger_1.ApiPropertyOptional)({ example: '10:00', description: 'Standard expected time' }),
+    (0, swagger_1.ApiProperty)({ example: 'VEH1234', description: 'Vehicle number', required: false }),
     (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
-], CreateArrivalDto.prototype, "standardTime", void 0);
+], CreateArrivalDto.prototype, "vehicleNumber", void 0);
 __decorate([
-    (0, swagger_1.ApiPropertyOptional)({ example: '00:30', description: 'Time taken' }),
+    (0, swagger_1.ApiProperty)({ example: 'permit.png', description: 'Permit image filename', required: false }),
     (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
-], CreateArrivalDto.prototype, "timeTaken", void 0);
+], CreateArrivalDto.prototype, "permitImage", void 0);
 __decorate([
-    (0, swagger_1.ApiPropertyOptional)({ example: '0:30', description: 'Difference from standard time' }),
+    (0, swagger_1.ApiProperty)({ example: 'driver.png', description: 'Driver image filename', required: false }),
     (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
-], CreateArrivalDto.prototype, "difference", void 0);
+], CreateArrivalDto.prototype, "driverImage", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ example: 'vehicle.png', description: 'Vehicle image filename', required: false }),
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateArrivalDto.prototype, "vehicleImage", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ example: 'All checks passed', description: 'Remarks', required: false }),
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateArrivalDto.prototype, "remarks", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({ example: 'Pending', description: 'Pending,Accepted,Rejected' }),
     (0, class_validator_1.IsString)(),

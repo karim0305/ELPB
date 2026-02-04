@@ -13,8 +13,8 @@ exports.ArrivalSchema = exports.Arrival = exports.GpsSchema = exports.Gps = void
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
 const device_schema_1 = require("../../device/schema/device.schema");
+const elp_schema_1 = require("../../elp/schema/elp.schema");
 const millinfo_schema_1 = require("../../millinfo/schema/millinfo.schema");
-const registration_schema_1 = require("../../registration/schema/registration.schema");
 let Gps = class Gps {
     latitude;
     longitude;
@@ -35,30 +35,17 @@ exports.GpsSchema = mongoose_1.SchemaFactory.createForClass(Gps);
 let Arrival = class Arrival {
     millid;
     deviceId;
-    registrationId;
-    companyCode;
-    companyName;
-    lpCode;
-    lpName;
-    serialNumber;
-    imei;
+    elpId;
     gps;
-    gpsDistance;
     towerId;
-    haulageCode;
-    haulageName;
-    registrationNumber;
+    regid;
+    haulage;
     vehicleNumber;
-    permitImage;
+    documentNo;
     driverImage;
     vehicleImage;
-    date;
-    time;
+    permitImage;
     remarks;
-    documentNo;
-    standardTime;
-    timeTaken;
-    difference;
     status;
 };
 exports.Arrival = Arrival;
@@ -81,59 +68,27 @@ __decorate([
 __decorate([
     (0, mongoose_1.Prop)({
         type: mongoose_2.Types.ObjectId,
-        ref: registration_schema_1.Registration.name,
+        ref: elp_schema_1.Elp.name,
         required: true
     }),
     __metadata("design:type", mongoose_2.Types.ObjectId)
-], Arrival.prototype, "registrationId", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ required: true }),
-    __metadata("design:type", String)
-], Arrival.prototype, "companyCode", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ required: true }),
-    __metadata("design:type", String)
-], Arrival.prototype, "companyName", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ required: true }),
-    __metadata("design:type", String)
-], Arrival.prototype, "lpCode", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ required: true }),
-    __metadata("design:type", String)
-], Arrival.prototype, "lpName", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ required: true }),
-    __metadata("design:type", String)
-], Arrival.prototype, "serialNumber", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ required: true }),
-    __metadata("design:type", String)
-], Arrival.prototype, "imei", void 0);
+], Arrival.prototype, "elpId", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ type: exports.GpsSchema }),
     __metadata("design:type", Gps)
 ], Arrival.prototype, "gps", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
-    __metadata("design:type", Number)
-], Arrival.prototype, "gpsDistance", void 0);
-__decorate([
-    (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
 ], Arrival.prototype, "towerId", void 0);
 __decorate([
-    (0, mongoose_1.Prop)(),
+    (0, mongoose_1.Prop)({ unique: true, required: true, index: true }),
     __metadata("design:type", String)
-], Arrival.prototype, "haulageCode", void 0);
+], Arrival.prototype, "regid", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
-], Arrival.prototype, "haulageName", void 0);
-__decorate([
-    (0, mongoose_1.Prop)(),
-    __metadata("design:type", String)
-], Arrival.prototype, "registrationNumber", void 0);
+], Arrival.prototype, "haulage", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
@@ -141,7 +96,7 @@ __decorate([
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
-], Arrival.prototype, "permitImage", void 0);
+], Arrival.prototype, "documentNo", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
@@ -151,33 +106,13 @@ __decorate([
     __metadata("design:type", String)
 ], Arrival.prototype, "vehicleImage", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ type: Date }),
-    __metadata("design:type", Date)
-], Arrival.prototype, "date", void 0);
-__decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
-], Arrival.prototype, "time", void 0);
+], Arrival.prototype, "permitImage", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
 ], Arrival.prototype, "remarks", void 0);
-__decorate([
-    (0, mongoose_1.Prop)(),
-    __metadata("design:type", String)
-], Arrival.prototype, "documentNo", void 0);
-__decorate([
-    (0, mongoose_1.Prop)(),
-    __metadata("design:type", String)
-], Arrival.prototype, "standardTime", void 0);
-__decorate([
-    (0, mongoose_1.Prop)(),
-    __metadata("design:type", String)
-], Arrival.prototype, "timeTaken", void 0);
-__decorate([
-    (0, mongoose_1.Prop)(),
-    __metadata("design:type", String)
-], Arrival.prototype, "difference", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ required: true }),
     __metadata("design:type", String)

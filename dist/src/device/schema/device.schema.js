@@ -21,7 +21,7 @@ let Device = class Device extends mongoose_2.Document {
     deviceBrand;
     location;
     approximateLocation;
-    internetStatus;
+    type;
     imei;
     Tawerid;
     status;
@@ -68,8 +68,8 @@ __decorate([
 ], Device.prototype, "approximateLocation", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
-    __metadata("design:type", Boolean)
-], Device.prototype, "internetStatus", void 0);
+    __metadata("design:type", String)
+], Device.prototype, "type", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ default: null }),
     __metadata("design:type", String)
