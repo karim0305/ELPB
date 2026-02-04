@@ -30,7 +30,7 @@ let ArrivalService = class ArrivalService {
         }
         catch (error) {
             if (error.code === 11000) {
-                throw new BadRequestException('regid already exists');
+                throw new common_1.BadRequestException('regid already exists');
             }
             throw error;
         }
