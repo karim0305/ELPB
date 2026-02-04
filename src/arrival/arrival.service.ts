@@ -16,14 +16,14 @@ export class ArrivalService {
     const saved = await createdArrival.save();
 
     // Populate mill, device, registration after save
-    return saved.populate('millid deviceId regid');
+    return saved.populate('millid deviceId');
   }
 
   // Find all Arrivals with populated references
   async findAll(): Promise<Arrival[]> {
     return this.arrivalModel
       .find()
-      .populate('millid deviceId registrationId')
+      .populate('millid deviceId ')
       .exec();
   }
 
@@ -31,7 +31,7 @@ export class ArrivalService {
   async findById(id: string): Promise<Arrival> {
     const arrival = await this.arrivalModel
       .findById(id)
-      .populate('millid deviceId registrationId')
+      .populate('millid deviceId ')
       .exec();
 
     if (!arrival) {
@@ -48,7 +48,7 @@ export class ArrivalService {
         { status },
         { new: true },
       )
-      .populate('millid deviceId registrationId')
+      .populate('millid deviceId')
       .exec();
 
     if (!updated) {
@@ -61,7 +61,7 @@ export class ArrivalService {
   async delete(id: string): Promise<Arrival> {
     const deleted = await this.arrivalModel
       .findByIdAndDelete(id)
-      .populate('millid deviceId registrationId')
+      .populate('millid deviceId')
       .exec();
 
     if (!deleted) {
