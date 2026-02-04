@@ -12,12 +12,17 @@ export class ArrivalService {
 
   // Create Arrival
   async create(createArrivalDto: CreateArrivalDto): Promise<Arrival> {
+  try {
     const createdArrival = new this.arrivalModel(createArrivalDto);
     const saved = await createdArrival.save();
-
-    // Populate mill, device, registration after save
     return saved.populate('millid deviceId');
+  } catch (error) {
+    if (error.code === 11000) {
+      throw new BadRequestException('regid already exists');
+    }
+    throw error;
   }
+}
 
   // Find all Arrivals with populated references
   async findAll(): Promise<Arrival[]> {
@@ -31,7 +36,7 @@ export class ArrivalService {
   async findById(id: string): Promise<Arrival> {
     const arrival = await this.arrivalModel
       .findById(id)
-      .populate('millid deviceId ')
+      .populate('millid deviceId')
       .exec();
 
     if (!arrival) {

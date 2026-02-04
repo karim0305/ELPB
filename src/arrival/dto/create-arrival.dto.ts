@@ -52,10 +52,10 @@ export class CreateArrivalDto {
   towerId?: string;
 
 
-  @ApiProperty({ example: 'CSML1001', description: 'Registration Number', required: true })
-  @IsString()
-  regid?: string;
-
+ @ApiProperty({ example: 'CSML1001', description: 'Registration Number', required: true })
+@IsString()
+@IsNotEmpty()
+regid: string;
 
 
 

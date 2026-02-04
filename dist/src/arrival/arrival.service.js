@@ -23,20 +23,28 @@ let ArrivalService = class ArrivalService {
         this.arrivalModel = arrivalModel;
     }
     async create(createArrivalDto) {
-        const createdArrival = new this.arrivalModel(createArrivalDto);
-        const saved = await createdArrival.save();
-        return saved.populate('millid deviceId regid');
+        try {
+            const createdArrival = new this.arrivalModel(createArrivalDto);
+            const saved = await createdArrival.save();
+            return saved.populate('millid deviceId');
+        }
+        catch (error) {
+            if (error.code === 11000) {
+                throw new BadRequestException('regid already exists');
+            }
+            throw error;
+        }
     }
     async findAll() {
         return this.arrivalModel
             .find()
-            .populate('millid deviceId registrationId')
+            .populate('millid deviceId ')
             .exec();
     }
     async findById(id) {
         const arrival = await this.arrivalModel
             .findById(id)
-            .populate('millid deviceId registrationId')
+            .populate('millid deviceId')
             .exec();
         if (!arrival) {
             throw new common_1.NotFoundException(`Arrival with id ${id} not found`);
@@ -46,7 +54,7 @@ let ArrivalService = class ArrivalService {
     async updateStatus(id, status) {
         const updated = await this.arrivalModel
             .findByIdAndUpdate(id, { status }, { new: true })
-            .populate('millid deviceId registrationId')
+            .populate('millid deviceId')
             .exec();
         if (!updated) {
             throw new common_1.NotFoundException(`Arrival with id ${id} not found`);
@@ -56,7 +64,7 @@ let ArrivalService = class ArrivalService {
     async delete(id) {
         const deleted = await this.arrivalModel
             .findByIdAndDelete(id)
-            .populate('millid deviceId registrationId')
+            .populate('millid deviceId')
             .exec();
         if (!deleted) {
             throw new common_1.NotFoundException(`Arrival with id ${id} not found`);

@@ -8,7 +8,7 @@ export declare class CreateArrivalDto {
     elpId: string;
     gps?: GpsDto;
     towerId?: string;
-    regid?: string;
+    regid: string;
     haulage?: string;
     documentNo?: string;
     vehicleNumber?: string;
