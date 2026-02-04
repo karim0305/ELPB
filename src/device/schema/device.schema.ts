@@ -45,7 +45,7 @@ export class Device extends Document {
   approximateLocation: string;
 
   @Prop()
-  internetStatus: boolean;
+  type: string;
 
   @Prop({ default: null })
   imei?: string;

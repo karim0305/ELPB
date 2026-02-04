@@ -93,8 +93,8 @@ export class CreateDeviceDto {
     example: true,
     description: 'Internet connectivity status',
   })
-  @IsBoolean()
-  internetStatus: boolean;
+  @IsString()
+  type: string;
 
   @ApiPropertyOptional({
     example: 'ABCDEF123456789',
