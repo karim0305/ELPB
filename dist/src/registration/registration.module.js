@@ -12,6 +12,7 @@ const mongoose_1 = require("@nestjs/mongoose");
 const registration_service_1 = require("./registration.service");
 const registration_schema_1 = require("./schema/registration.schema");
 const registration_controller_1 = require("./registration.controller");
+const registration_gateway_1 = require("./registration.gateway");
 let RegistrationModule = class RegistrationModule {
 };
 exports.RegistrationModule = RegistrationModule;
@@ -19,7 +20,7 @@ exports.RegistrationModule = RegistrationModule = __decorate([
     (0, common_1.Module)({
         imports: [mongoose_1.MongooseModule.forFeature([{ name: registration_schema_1.Registration.name, schema: registration_schema_1.RegistrationSchema }])],
         controllers: [registration_controller_1.RegistrationController],
-        providers: [registration_service_1.RegistrationService],
+        providers: [registration_service_1.RegistrationService, registration_gateway_1.RegistrationGateway],
     })
 ], RegistrationModule);
 //# sourceMappingURL=registration.module.js.map

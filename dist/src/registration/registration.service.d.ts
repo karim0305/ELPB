@@ -1,9 +1,11 @@
 import { Model } from 'mongoose';
 import { Registration, RegistrationDocument } from './schema/registration.schema';
 import { CreateRegistrationDto } from './dto/create-registration.dto';
+import { RegistrationGateway } from './registration.gateway';
 export declare class RegistrationService {
     private readonly registrationModel;
-    constructor(registrationModel: Model<RegistrationDocument>);
+    private readonly registrationGateway;
+    constructor(registrationModel: Model<RegistrationDocument>, registrationGateway: RegistrationGateway);
     create(dto: CreateRegistrationDto): Promise<Registration>;
     findAll(): Promise<Registration[]>;
     findOne(id: string): Promise<Registration>;

@@ -17,16 +17,20 @@ const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
 const registration_schema_1 = require("./schema/registration.schema");
+const registration_gateway_1 = require("./registration.gateway");
 let RegistrationService = class RegistrationService {
     registrationModel;
-    constructor(registrationModel) {
+    registrationGateway;
+    constructor(registrationModel, registrationGateway) {
         this.registrationModel = registrationModel;
+        this.registrationGateway = registrationGateway;
     }
     async create(dto) {
         try {
             const lastRegistration = await this.registrationModel
-                .findOne()
-                .sort({ createdAt: -1 });
+                .findOne({}, { regid: 1 })
+                .sort({ createdAt: -1 })
+                .lean();
             let nextNumber = 1001;
             if (lastRegistration?.regid) {
                 const lastNum = parseInt(lastRegistration.regid.replace('CSML', ''), 10);
@@ -47,7 +51,9 @@ let RegistrationService = class RegistrationService {
                     : undefined,
                 status: 'Pending',
             });
-            return await created.save();
+            const saved = await created.save();
+            this.registrationGateway.emitRegistrationCreated(saved);
+            return saved;
         }
         catch (error) {
             throw error;
@@ -83,6 +89,7 @@ let RegistrationService = class RegistrationService {
         if (!updated) {
             throw new common_1.NotFoundException(`Registration with ID ${id} not found`);
         }
+        this.registrationGateway.emitRegistrationUpdated(updated.toObject());
         return updated.toObject();
     }
     async remove(id) {
@@ -92,6 +99,7 @@ let RegistrationService = class RegistrationService {
         if (!deleted) {
             throw new common_1.NotFoundException(`Registration with ID ${id} not found`);
         }
+        this.registrationGateway.emitRegistrationDeleted(id);
         return deleted.toObject();
     }
     async findByMill(millid) {
@@ -117,6 +125,7 @@ exports.RegistrationService = RegistrationService;
 exports.RegistrationService = RegistrationService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, mongoose_1.InjectModel)(registration_schema_1.Registration.name)),
-    __metadata("design:paramtypes", [mongoose_2.Model])
+    __metadata("design:paramtypes", [mongoose_2.Model,
+        registration_gateway_1.RegistrationGateway])
 ], RegistrationService);
 //# sourceMappingURL=registration.service.js.map

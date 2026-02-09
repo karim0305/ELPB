@@ -3,20 +3,23 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
 import { Registration, RegistrationDocument } from './schema/registration.schema';
 import { CreateRegistrationDto } from './dto/create-registration.dto';
+import { RegistrationGateway } from './registration.gateway';
 
 @Injectable()
 export class RegistrationService {
   constructor(
     @InjectModel(Registration.name)
     private readonly registrationModel: Model<RegistrationDocument>,
+     private readonly registrationGateway: RegistrationGateway,
   ) {}
 
   // CREATE
 async create(dto: CreateRegistrationDto): Promise<Registration> {
   try {
-    const lastRegistration = await this.registrationModel
-      .findOne()
-      .sort({ createdAt: -1 });
+   const lastRegistration = await this.registrationModel
+  .findOne({}, { regid: 1 })
+  .sort({ createdAt: -1 })
+  .lean();
 
     let nextNumber = 1001;
 
@@ -45,7 +48,9 @@ async create(dto: CreateRegistrationDto): Promise<Registration> {
       status: 'Pending',
     });
 
-    return await created.save();
+    const saved = await created.save();
+    this.registrationGateway.emitRegistrationCreated(saved);
+    return saved;
   } catch (error) {
     throw error;
   }
@@ -99,7 +104,9 @@ async create(dto: CreateRegistrationDto): Promise<Registration> {
       throw new NotFoundException(`Registration with ID ${id} not found`);
     }
 
+    this.registrationGateway.emitRegistrationUpdated(updated.toObject());
     return updated.toObject();
+    
   }
 
   // DELETE
@@ -112,6 +119,7 @@ async create(dto: CreateRegistrationDto): Promise<Registration> {
       throw new NotFoundException(`Registration with ID ${id} not found`);
     }
 
+    this.registrationGateway.emitRegistrationDeleted(id);
     return deleted.toObject();
   }
 
