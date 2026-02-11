@@ -20,6 +20,7 @@ const houlage_module_1 = require("./houlage/houlage.module");
 const device_module_1 = require("./device/device.module");
 const arrival_module_1 = require("./arrival/arrival.module");
 const elp_module_1 = require("./elp/elp.module");
+const superadmin_module_1 = require("./superadmin/superadmin.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -65,6 +66,7 @@ exports.AppModule = AppModule = __decorate([
             device_module_1.DeviceModule,
             arrival_module_1.ArrivalModule,
             elp_module_1.ElpModule,
+            superadmin_module_1.SuperAdminModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
