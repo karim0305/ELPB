@@ -26,9 +26,7 @@ export class MillInfo {
   @Prop({ required: true, unique: true, lowercase: true })
   email: string;
 
-  @Prop({ default: 'Admin' })
-  role: string;
-
+ 
   @Prop({ default: 'https://via.placeholder.com/150' })
   profilePicture: string;
 

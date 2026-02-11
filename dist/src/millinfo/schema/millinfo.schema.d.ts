@@ -8,7 +8,6 @@ export declare class MillInfo {
     phone: string;
     address?: string;
     email: string;
-    role: string;
     profilePicture: string;
     lastLogin: Date;
     status: string;

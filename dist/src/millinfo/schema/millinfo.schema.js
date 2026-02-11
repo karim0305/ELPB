@@ -19,7 +19,6 @@ let MillInfo = class MillInfo {
     phone;
     address;
     email;
-    role;
     profilePicture;
     lastLogin;
     status;
@@ -54,10 +53,6 @@ __decorate([
     (0, mongoose_1.Prop)({ required: true, unique: true, lowercase: true }),
     __metadata("design:type", String)
 ], MillInfo.prototype, "email", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ default: 'Admin' }),
-    __metadata("design:type", String)
-], MillInfo.prototype, "role", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ default: 'https://via.placeholder.com/150' }),
     __metadata("design:type", String)

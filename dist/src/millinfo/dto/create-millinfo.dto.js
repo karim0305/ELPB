@@ -20,7 +20,6 @@ class CreateMillInfoDto {
     phone;
     address;
     email;
-    role;
     profilePicture;
     status;
     password;
@@ -67,12 +66,6 @@ __decorate([
     (0, class_validator_1.IsEmail)(),
     __metadata("design:type", String)
 ], CreateMillInfoDto.prototype, "email", void 0);
-__decorate([
-    (0, swagger_1.ApiProperty)({ example: 'Admin', description: 'Role of the user', required: false }),
-    (0, class_validator_1.IsString)(),
-    (0, class_validator_1.IsOptional)(),
-    __metadata("design:type", String)
-], CreateMillInfoDto.prototype, "role", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({ example: 'https://via.placeholder.com/150', description: 'Profile picture URL', required: false }),
     (0, class_validator_1.IsString)(),

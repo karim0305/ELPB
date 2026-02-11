@@ -6,7 +6,6 @@ export declare class CreateMillInfoDto {
     phone: string;
     address?: string;
     email: string;
-    role?: string;
     profilePicture?: string;
     status?: string;
     password: string;

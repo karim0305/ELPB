@@ -36,10 +36,6 @@ export class CreateMillInfoDto {
   @IsEmail()
   email: string;
 
-  @ApiProperty({ example: 'Admin', description: 'Role of the user', required: false })
-  @IsString()
-  @IsOptional()
-  role?: string;
 
   @ApiProperty({ example: 'https://via.placeholder.com/150', description: 'Profile picture URL', required: false })
   @IsString()
