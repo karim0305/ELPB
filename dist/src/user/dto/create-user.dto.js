@@ -30,12 +30,14 @@ class CreateUserDto {
 exports.CreateUserDto = CreateUserDto;
 __decorate([
     (0, swagger_1.ApiProperty)({
-        description: "User ID (MongoDB ObjectId)",
+        description: "Mill ID (MongoDB ObjectId)",
         example: "652d4f8c8d6a1b2f9f8a7c12",
+        required: false,
+        nullable: true,
     }),
+    (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.IsMongoId)(),
-    (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", String)
+    __metadata("design:type", Object)
 ], CreateUserDto.prototype, "millid", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({

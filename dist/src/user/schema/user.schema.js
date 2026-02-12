@@ -30,7 +30,7 @@ let User = class User {
 exports.User = User;
 __decorate([
     (0, mongoose_1.Prop)({ type: mongoose_2.Types.ObjectId, ref: User.name, required: false }),
-    __metadata("design:type", mongoose_2.Types.ObjectId)
+    __metadata("design:type", Object)
 ], User.prototype, "millid", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ required: true }),

@@ -1,7 +1,7 @@
 import { Document, Types } from "mongoose";
 export type UserDocument = User & Document;
 export declare class User {
-    millid: Types.ObjectId;
+    millid?: Types.ObjectId | null;
     name: string;
     email: string;
     phone: string;

@@ -11,7 +11,7 @@ import { HaulageModule } from './houlage/houlage.module';
 import { DeviceModule } from './device/device.module';
 import { ArrivalModule } from './arrival/arrival.module';
 import { ElpModule } from './elp/elp.module';
-import { SuperAdminModule } from './superadmin/superadmin.module';
+
 
 
 
@@ -58,7 +58,6 @@ import { SuperAdminModule } from './superadmin/superadmin.module';
     DeviceModule,
     ArrivalModule,
     ElpModule,
-    SuperAdminModule,
 
   ],
   controllers: [AppController],

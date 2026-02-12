@@ -7,7 +7,7 @@ export type UserDocument = User & Document;
 export class User {
   
   @Prop({ type: Types.ObjectId, ref: User.name, required: false })
-  millid: Types.ObjectId; // Reference to User (user)
+ millid?: Types.ObjectId | null; // Reference to User (user)
   
   @Prop({ required: true })
   name: string; // Name
