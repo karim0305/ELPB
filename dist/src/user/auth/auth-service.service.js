@@ -28,7 +28,13 @@ let AuthService = class AuthService {
         this.jwtService = jwtService;
     }
     async login(email, password) {
-        const user = await this.userModel.findOne({ email }).exec();
+        const user = await this.userModel
+            .findOne({ email })
+            .populate({
+            path: 'millid',
+            model: 'MillInfo',
+        })
+            .exec();
         if (!user) {
             throw new common_1.NotFoundException({
                 message: '❌ User not found',

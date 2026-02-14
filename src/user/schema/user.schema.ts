@@ -1,14 +1,16 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { Document, Types } from "mongoose";
+import { MillInfo } from "src/millinfo/schema/millinfo.schema";
 
 export type UserDocument = User & Document;
 
 @Schema({ timestamps: true })
 export class User {
   
-  @Prop({ type: Types.ObjectId, ref: User.name, required: false })
- millid?: Types.ObjectId | null; // Reference to User (user)
-  
+ @Prop({ type: Types.ObjectId, ref: MillInfo.name, required: false })
+millid?: Types.ObjectId | null;
+
+
   @Prop({ required: true })
   name: string; // Name
 

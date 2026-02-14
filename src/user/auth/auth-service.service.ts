@@ -19,7 +19,13 @@ export class AuthService {
   ) {}
 
   async login(email: string, password: string): Promise<{ access_token: string; user: any }> {
-    const user = await this.userModel.findOne({ email }).exec();
+    const user = await this.userModel
+    .findOne({ email })
+    .populate({
+    path: 'millid',
+    model: 'MillInfo', // 👈 must match model name
+  })
+    .exec();
     if (!user) {
       throw new NotFoundException({
         message: '❌ User not found',

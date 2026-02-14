@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserSchema = exports.User = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
+const millinfo_schema_1 = require("../../millinfo/schema/millinfo.schema");
 let User = class User {
     millid;
     name;
@@ -29,7 +30,7 @@ let User = class User {
 };
 exports.User = User;
 __decorate([
-    (0, mongoose_1.Prop)({ type: mongoose_2.Types.ObjectId, ref: User.name, required: false }),
+    (0, mongoose_1.Prop)({ type: mongoose_2.Types.ObjectId, ref: millinfo_schema_1.MillInfo.name, required: false }),
     __metadata("design:type", Object)
 ], User.prototype, "millid", void 0);
 __decorate([
