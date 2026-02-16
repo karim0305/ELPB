@@ -12,6 +12,7 @@ export declare class DeviceService {
         __v: number;
     })[]>;
     findByImei(imei: string): Promise<Device>;
+    findByMillid(millid: string): Promise<Device[]>;
     updateByImei(imei: string, updateData: UpdateDeviceDto): Promise<Device>;
     deleteByImei(imei: string): Promise<{
         message: string;

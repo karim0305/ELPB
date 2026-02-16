@@ -39,6 +39,13 @@ findByImei(@Param('imei') imei: string) {
   return this.deviceService.findByImei(imei);
 }
 
+ @Get('millid/:millid')
+@ApiParam({ name: 'millid', example: '123456789012345' })
+@ApiOperation({ summary: 'Get device by millid' })
+findByMillid(@Param('millid') millid: string) {
+  return this.deviceService.findByMillid(millid);
+}
+
 
   // ✅ UPDATE
  @Patch('imei/:imei')

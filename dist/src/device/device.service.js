@@ -39,6 +39,16 @@ let DeviceService = class DeviceService {
         }
         return device;
     }
+    async findByMillid(millid) {
+        const devices = await this.deviceModel
+            .find({ millid })
+            .populate('millid')
+            .exec();
+        if (!devices || devices.length === 0) {
+            throw new common_1.NotFoundException(`No devices found for millid ${millid}`);
+        }
+        return devices;
+    }
     async updateByImei(imei, updateData) {
         const updatedDevice = await this.deviceModel.findOneAndUpdate({ imei }, { $set: updateData }, { new: true, runValidators: true });
         if (!updatedDevice) {

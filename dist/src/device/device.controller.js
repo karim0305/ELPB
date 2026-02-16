@@ -32,6 +32,9 @@ let DeviceController = class DeviceController {
     findByImei(imei) {
         return this.deviceService.findByImei(imei);
     }
+    findByMillid(millid) {
+        return this.deviceService.findByMillid(millid);
+    }
     updateByImeiController(imei, dto) {
         return this.deviceService.updateByImei(imei, dto);
     }
@@ -64,6 +67,15 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], DeviceController.prototype, "findByImei", null);
+__decorate([
+    (0, common_1.Get)('millid/:millid'),
+    (0, swagger_1.ApiParam)({ name: 'millid', example: '123456789012345' }),
+    (0, swagger_1.ApiOperation)({ summary: 'Get device by millid' }),
+    __param(0, (0, common_1.Param)('millid')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], DeviceController.prototype, "findByMillid", null);
 __decorate([
     (0, common_1.Patch)('imei/:imei'),
     (0, swagger_1.ApiParam)({ name: 'imei', example: '8f7d6623071fd85c' }),

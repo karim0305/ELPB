@@ -11,6 +11,7 @@ export declare class DeviceController {
         __v: number;
     })[]>;
     findByImei(imei: string): Promise<import("./schema/device.schema").Device>;
+    findByMillid(millid: string): Promise<import("./schema/device.schema").Device[]>;
     updateByImeiController(imei: string, dto: UpdateDeviceDto): Promise<import("./schema/device.schema").Device>;
     deleteByImeiController(imei: string): Promise<{
         message: string;
