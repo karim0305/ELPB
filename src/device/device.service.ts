@@ -41,7 +41,8 @@ async findByImei(imei: string): Promise<Device> {
 async findByMillid(millid: string): Promise<Device[]> {
   const devices = await this.deviceModel
     .find({ millid })              // 👈 find ALL devices with this millid
-    .populate('millid')            // 👈 populate the referenced MillInfo
+    .populate('millid')
+    .populate('elpid')            // 👈 populate the referenced MillInfo
     .exec();
 
   if (!devices || devices.length === 0) {

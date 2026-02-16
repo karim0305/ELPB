@@ -43,6 +43,7 @@ let DeviceService = class DeviceService {
         const devices = await this.deviceModel
             .find({ millid })
             .populate('millid')
+            .populate('elpid')
             .exec();
         if (!devices || devices.length === 0) {
             throw new common_1.NotFoundException(`No devices found for millid ${millid}`);
