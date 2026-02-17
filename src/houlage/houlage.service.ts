@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { ConflictException, Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CreateHaulageDto } from './dto/create-houlage.dto';
@@ -32,7 +32,7 @@ export class HaulageService {
       );
     }
   }
-}
+
 
   async findAll(): Promise<Haulage[]> {
   return this.haulageModel

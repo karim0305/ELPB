@@ -23,7 +23,16 @@ let HaulageService = class HaulageService {
         this.haulageModel = haulageModel;
     }
     async create(dto) {
-        return this.haulageModel.create(dto);
+        try {
+            return await this.haulageModel.create(dto);
+        }
+        catch (error) {
+            if (error.code === 11000) {
+                const duplicateField = Object.keys(error.keyPattern)[0];
+                throw new common_1.ConflictException(`${duplicateField} already exists!`);
+            }
+            throw new common_1.InternalServerErrorException('Failed to create haulage');
+        }
     }
     async findAll() {
         return this.haulageModel
