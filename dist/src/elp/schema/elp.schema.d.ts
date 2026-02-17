@@ -5,6 +5,7 @@ export declare class Elp {
     elpCode: string;
     elpName: string;
     remarks?: string;
+    status: string;
 }
 export declare const ElpSchema: import("mongoose").Schema<Elp, import("mongoose").Model<Elp, any, any, any, Document<unknown, any, Elp, any, {}> & Elp & {
     _id: Types.ObjectId;

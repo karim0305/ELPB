@@ -32,4 +32,12 @@ export class CreateElpDto {
   @IsOptional()
   @IsString()
   remarks?: string;
+
+  @ApiProperty({
+    example: 'active',
+    description: 'Status of the ELP',
+  })
+  @IsString()
+  @IsNotEmpty()
+  status: string;
 }

@@ -3,4 +3,5 @@ export declare class CreateElpDto {
     elpCode: string;
     elpName: string;
     remarks?: string;
+    status: string;
 }

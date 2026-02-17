@@ -22,6 +22,9 @@ export class Elp {
 
   @Prop()
   remarks?: string;
+
+  @Prop ({ default: 'active' })
+  status: string;
 }
 
 export const ElpSchema = SchemaFactory.createForClass(Elp);

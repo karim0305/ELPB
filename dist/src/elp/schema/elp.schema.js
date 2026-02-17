@@ -18,6 +18,7 @@ let Elp = class Elp {
     elpCode;
     elpName;
     remarks;
+    status;
 };
 exports.Elp = Elp;
 __decorate([
@@ -40,6 +41,10 @@ __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
 ], Elp.prototype, "remarks", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: 'active' }),
+    __metadata("design:type", String)
+], Elp.prototype, "status", void 0);
 exports.Elp = Elp = __decorate([
     (0, mongoose_1.Schema)({ timestamps: true })
 ], Elp);

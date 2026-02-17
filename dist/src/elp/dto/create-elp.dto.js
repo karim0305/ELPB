@@ -17,6 +17,7 @@ class CreateElpDto {
     elpCode;
     elpName;
     remarks;
+    status;
 }
 exports.CreateElpDto = CreateElpDto;
 __decorate([
@@ -54,4 +55,13 @@ __decorate([
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], CreateElpDto.prototype, "remarks", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({
+        example: 'active',
+        description: 'Status of the ELP',
+    }),
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateElpDto.prototype, "status", void 0);
 //# sourceMappingURL=create-elp.dto.js.map
