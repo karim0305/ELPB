@@ -12,9 +12,27 @@ export class HaulageService {
     private haulageModel: Model<HaulageDocument>,
   ) {}
 
+ 
   async create(dto: CreateHaulageDto): Promise<Haulage> {
-    return this.haulageModel.create(dto);
+    try {
+      return await this.haulageModel.create(dto);
+    } catch (error: any) {
+      // Duplicate key error
+      if (error.code === 11000) {
+        // Pick the field causing the duplicate
+        const duplicateField = Object.keys(error.keyPattern)[0];
+        throw new ConflictException(
+          `${duplicateField} already exists!`,
+        );
+      }
+
+      // Other errors
+      throw new InternalServerErrorException(
+        'Failed to create haulage',
+      );
+    }
   }
+}
 
   async findAll(): Promise<Haulage[]> {
   return this.haulageModel
