@@ -66,6 +66,13 @@ let RegistrationService = class RegistrationService {
             .exec();
         return registrations.map(r => r.toObject());
     }
+    async getElpByMillId(millid) {
+        return this.registrationModel
+            .find({ millid: new mongoose_2.Types.ObjectId(millid) })
+            .populate('millid')
+            .populate('elpId')
+            .lean();
+    }
     async findOne(id) {
         const registration = await this.registrationModel
             .findById(id)

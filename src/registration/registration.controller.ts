@@ -32,6 +32,14 @@ export class RegistrationController {
     );
   }
 
+  
+  @Get('registrationWithElp/:millid')
+  registrationWithElp(
+    @Param('millid') millid: string,
+  ) {
+    return this.registrationService.getElpByMillId(millid);
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string): Promise<Registration> {
     return this.registrationService.findOne(id);
