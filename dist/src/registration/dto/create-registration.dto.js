@@ -29,6 +29,7 @@ __decorate([
     __metadata("design:type", Number)
 ], GpsDto.prototype, "longitude", void 0);
 class CreateRegistrationDto {
+    userid;
     millid;
     deviceId;
     elpId;
@@ -45,6 +46,12 @@ class CreateRegistrationDto {
     status;
 }
 exports.CreateRegistrationDto = CreateRegistrationDto;
+__decorate([
+    (0, swagger_1.ApiProperty)({ example: '64cfa9a3b8c1a34f9e12abcd', description: 'Unique user ID' }),
+    (0, class_validator_1.IsMongoId)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateRegistrationDto.prototype, "userid", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({ example: '64cfa9a3b8c1a34f9e12abcd', description: 'Unique mill ID' }),
     (0, class_validator_1.IsMongoId)(),

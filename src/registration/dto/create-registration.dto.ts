@@ -13,6 +13,14 @@ export class GpsDto {
 }
 
 export class CreateRegistrationDto {
+
+
+
+@ApiProperty({ example: '64cfa9a3b8c1a34f9e12abcd', description: 'Unique user ID' })
+@IsMongoId()
+  @IsNotEmpty()
+  userid: string;
+
   
   @ApiProperty({ example: '64cfa9a3b8c1a34f9e12abcd', description: 'Unique mill ID' })
  @IsMongoId()

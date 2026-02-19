@@ -1,3 +1,4 @@
+import { User } from './../../user/entities/user.entity';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 import { Types } from 'mongoose';
@@ -20,6 +21,16 @@ export const GpsSchema = SchemaFactory.createForClass(Gps);
 
 @Schema()
 export class Registration {
+
+
+  
+  @Prop({ 
+    type: Types.ObjectId, 
+    ref: User.name, 
+    required: true 
+  })
+  userid: Types.ObjectId;
+
 
 
   @Prop({ 
