@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import { Arrival, ArrivalDocument } from './schema/arrival.schema';
 import { CreateArrivalDto } from './dto/create-arrival.dto';
 
@@ -11,11 +11,21 @@ export class ArrivalService {
   ) {}
 
   // Create Arrival
-  async create(createArrivalDto: CreateArrivalDto): Promise<Arrival> {
+
+async create(createArrivalDto: CreateArrivalDto): Promise<Arrival> {
   try {
-    const createdArrival = new this.arrivalModel(createArrivalDto);
+    const createdArrival = new this.arrivalModel({
+      ...createArrivalDto,
+      millid: new Types.ObjectId(createArrivalDto.millid),
+      userid: new Types.ObjectId(createArrivalDto.userid),
+      deviceId: new Types.ObjectId(createArrivalDto.deviceId),
+      elpId: new Types.ObjectId(createArrivalDto.elpId),
+    });
+
     const saved = await createdArrival.save();
-    return saved.populate('millid deviceId');
+
+    // await populate
+    return await saved.populate('millid deviceId');
   } catch (error) {
     if (error.code === 11000) {
       throw new BadRequestException('regid already exists');

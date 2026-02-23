@@ -24,9 +24,15 @@ let ArrivalService = class ArrivalService {
     }
     async create(createArrivalDto) {
         try {
-            const createdArrival = new this.arrivalModel(createArrivalDto);
+            const createdArrival = new this.arrivalModel({
+                ...createArrivalDto,
+                millid: new mongoose_2.Types.ObjectId(createArrivalDto.millid),
+                userid: new mongoose_2.Types.ObjectId(createArrivalDto.userid),
+                deviceId: new mongoose_2.Types.ObjectId(createArrivalDto.deviceId),
+                elpId: new mongoose_2.Types.ObjectId(createArrivalDto.elpId),
+            });
             const saved = await createdArrival.save();
-            return saved.populate('millid deviceId');
+            return await saved.populate('millid deviceId');
         }
         catch (error) {
             if (error.code === 11000) {

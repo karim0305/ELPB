@@ -15,6 +15,7 @@ const mongoose_2 = require("mongoose");
 const device_schema_1 = require("../../device/schema/device.schema");
 const elp_schema_1 = require("../../elp/schema/elp.schema");
 const millinfo_schema_1 = require("../../millinfo/schema/millinfo.schema");
+const user_entity_1 = require("../../user/entities/user.entity");
 let Gps = class Gps {
     latitude;
     longitude;
@@ -33,6 +34,7 @@ exports.Gps = Gps = __decorate([
 ], Gps);
 exports.GpsSchema = mongoose_1.SchemaFactory.createForClass(Gps);
 let Arrival = class Arrival {
+    userid;
     millid;
     deviceId;
     elpId;
@@ -49,6 +51,14 @@ let Arrival = class Arrival {
     status;
 };
 exports.Arrival = Arrival;
+__decorate([
+    (0, mongoose_1.Prop)({
+        type: mongoose_2.Types.ObjectId,
+        ref: user_entity_1.User.name,
+        required: true
+    }),
+    __metadata("design:type", mongoose_2.Types.ObjectId)
+], Arrival.prototype, "userid", void 0);
 __decorate([
     (0, mongoose_1.Prop)({
         type: mongoose_2.Types.ObjectId,

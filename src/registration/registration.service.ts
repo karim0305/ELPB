@@ -31,7 +31,7 @@ async create(dto: CreateRegistrationDto): Promise<Registration> {
       nextNumber = lastNum + 1;
     }
 
-    const regid = `CSML${nextNumber}`;
+    const regid = `CSML${Date.now()}`;
 
     const created = new this.registrationModel({
       ...dto,

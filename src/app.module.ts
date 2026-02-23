@@ -11,6 +11,7 @@ import { HaulageModule } from './houlage/houlage.module';
 import { DeviceModule } from './device/device.module';
 import { ArrivalModule } from './arrival/arrival.module';
 import { ElpModule } from './elp/elp.module';
+import { VerificationModule } from './verification/verification.module';
 
 
 
@@ -58,6 +59,7 @@ import { ElpModule } from './elp/elp.module';
     DeviceModule,
     ArrivalModule,
     ElpModule,
+    VerificationModule,
 
   ],
   controllers: [AppController],

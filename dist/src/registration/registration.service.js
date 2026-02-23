@@ -36,7 +36,7 @@ let RegistrationService = class RegistrationService {
                 const lastNum = parseInt(lastRegistration.regid.replace('CSML', ''), 10);
                 nextNumber = lastNum + 1;
             }
-            const regid = `CSML${nextNumber}`;
+            const regid = `CSML${Date.now()}`;
             const created = new this.registrationModel({
                 ...dto,
                 regid,

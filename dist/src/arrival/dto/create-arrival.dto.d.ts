@@ -3,6 +3,7 @@ export declare class GpsDto {
     longitude: number;
 }
 export declare class CreateArrivalDto {
+    userid: string;
     millid: string;
     deviceId: string;
     elpId: string;

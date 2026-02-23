@@ -14,6 +14,7 @@ export declare const GpsSchema: import("mongoose").Schema<Gps, import("mongoose"
     __v: number;
 }>;
 export declare class Arrival {
+    userid: Types.ObjectId;
     millid: Types.ObjectId;
     deviceId: Types.ObjectId;
     elpId: Types.ObjectId;

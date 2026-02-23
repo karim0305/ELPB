@@ -4,6 +4,7 @@ import { Device } from 'src/device/schema/device.schema';
 import { Elp } from 'src/elp/schema/elp.schema';
 import { MillInfo } from 'src/millinfo/schema/millinfo.schema';
 import { Registration } from 'src/registration/schema/registration.schema';
+import { User } from 'src/user/entities/user.entity';
 
 export type ArrivalDocument = Arrival & Document;
 
@@ -20,6 +21,15 @@ export const GpsSchema = SchemaFactory.createForClass(Gps);
 
 @Schema()
 export class Arrival {
+
+
+    @Prop({ 
+      type: Types.ObjectId, 
+      ref: User.name, 
+      required: true 
+    })
+    userid: Types.ObjectId;
+  
  
   @Prop({ 
     type: Types.ObjectId, 
