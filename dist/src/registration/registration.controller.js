@@ -31,9 +31,6 @@ let RegistrationController = class RegistrationController {
     getByMillId(millid, deviceId) {
         return this.registrationService.getByMillId(millid, deviceId);
     }
-    registrationWithElp(millid) {
-        return this.registrationService.getElpByMillId(millid);
-    }
     findOne(id) {
         return this.registrationService.findOne(id);
     }
@@ -66,13 +63,6 @@ __decorate([
     __metadata("design:paramtypes", [String, String]),
     __metadata("design:returntype", void 0)
 ], RegistrationController.prototype, "getByMillId", null);
-__decorate([
-    (0, common_1.Get)('registrationWithElp/:millid'),
-    __param(0, (0, common_1.Param)('millid')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
-], RegistrationController.prototype, "registrationWithElp", null);
 __decorate([
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)('id')),

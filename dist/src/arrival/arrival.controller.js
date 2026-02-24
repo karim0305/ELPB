@@ -24,6 +24,9 @@ let ArrivalController = class ArrivalController {
     async create(createArrivalDto) {
         return this.arrivalService.create(createArrivalDto);
     }
+    registrationWithElp(millid) {
+        return this.arrivalService.getArrivalElpByMillId(millid);
+    }
     async findAll() {
         return this.arrivalService.findAll();
     }
@@ -45,6 +48,13 @@ __decorate([
     __metadata("design:paramtypes", [create_arrival_dto_1.CreateArrivalDto]),
     __metadata("design:returntype", Promise)
 ], ArrivalController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)('ArrivalMillidWithElp/:millid'),
+    __param(0, (0, common_1.Param)('millid')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ArrivalController.prototype, "registrationWithElp", null);
 __decorate([
     (0, common_1.Get)(),
     __metadata("design:type", Function),

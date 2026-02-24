@@ -6,6 +6,11 @@ export declare class ArrivalService {
     constructor(arrivalModel: Model<ArrivalDocument>);
     create(createArrivalDto: CreateArrivalDto): Promise<Arrival>;
     findAll(): Promise<Arrival[]>;
+    getArrivalElpByMillId(millid: string): Promise<(import("mongoose").FlattenMaps<ArrivalDocument> & Required<{
+        _id: import("mongoose").FlattenMaps<unknown>;
+    }> & {
+        __v: number;
+    })[]>;
     findById(id: string): Promise<Arrival>;
     updateStatus(id: string, status: string): Promise<Arrival>;
     delete(id: string): Promise<Arrival>;

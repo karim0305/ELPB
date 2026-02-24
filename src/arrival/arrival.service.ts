@@ -42,6 +42,18 @@ async create(createArrivalDto: CreateArrivalDto): Promise<Arrival> {
       .exec();
   }
 
+
+async getArrivalElpByMillId(millid: string) {
+  return this.arrivalModel
+    .find({
+      millid: new Types.ObjectId(millid),
+      status: 'Pending',
+    })
+    .populate('millid')
+    .populate('elpId')
+    .lean();
+}
+  
   // Find one Arrival by ID with populated references
   async findById(id: string): Promise<Arrival> {
     const arrival = await this.arrivalModel

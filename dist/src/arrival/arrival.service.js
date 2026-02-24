@@ -47,6 +47,16 @@ let ArrivalService = class ArrivalService {
             .populate('millid deviceId ')
             .exec();
     }
+    async getArrivalElpByMillId(millid) {
+        return this.arrivalModel
+            .find({
+            millid: new mongoose_2.Types.ObjectId(millid),
+            status: 'Pending',
+        })
+            .populate('millid')
+            .populate('elpId')
+            .lean();
+    }
     async findById(id) {
         const arrival = await this.arrivalModel
             .findById(id)

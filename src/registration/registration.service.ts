@@ -68,13 +68,6 @@ async create(dto: CreateRegistrationDto): Promise<Registration> {
   }
 
 
-async getElpByMillId(millid: string) {
-  return this.registrationModel
-    .find({ millid: new Types.ObjectId(millid) })
-    .populate('millid')
-    .populate('elpId')
-    .lean();
-}
 
   // FIND ONE
   async findOne(id: string): Promise<Registration> {

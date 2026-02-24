@@ -12,10 +12,21 @@ export class ArrivalController {
     return this.arrivalService.create(createArrivalDto);
   }
 
+
+    @Get('ArrivalMillidWithElp/:millid')
+    registrationWithElp(
+      @Param('millid') millid: string,
+    ) {
+      return this.arrivalService.getArrivalElpByMillId(millid);
+    }
+  
+
   @Get()
   async findAll(): Promise<Arrival[]> {
     return this.arrivalService.findAll();
   }
+
+  
 
   @Get(':id')
   async findOne(@Param('id') id: string): Promise<Arrival> {
