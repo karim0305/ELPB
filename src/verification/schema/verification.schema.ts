@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
-import { Arrival } from 'src/arrival/entities/arrival.entity';
+// import { Arrival } from 'src/arrival/entities/arrival.entity';
 import { MillInfo } from 'src/millinfo/schema/millinfo.schema';
 import { Registration } from 'src/registration/schema/registration.schema';
 
@@ -22,11 +22,8 @@ export class Verification {
     required: true,
   })
   registrationid: Types.ObjectId;
-@Prop({
-  type: Types.ObjectId,
-  ref: Arrival.name,
-  required: true,
-})
+  
+@Prop({ type: Types.ObjectId, ref: 'Arrival', required: true })
 arrivalid: Types.ObjectId;// If you have Arrival schema, add ref here
 
   @Prop({
