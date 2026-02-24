@@ -62,7 +62,5 @@ export class VerificationController {
   @Get('verification/:millid') GetVerification( @Param('millid') millid: string, ) 
   {
      return this.verificationService.GetVerificationByMill(millid); 
-
-
   }
 }

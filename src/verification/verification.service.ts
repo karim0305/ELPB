@@ -70,51 +70,12 @@ export class VerificationService {
   }
   
 
-  async GetVerificationByMill(millid: string) {
-  const result = await this.registrationModel.aggregate([
-    // 1️⃣ Match mill and accepted registration
-    {
-      $match: {
-        millid: new Types.ObjectId(millid),
-        status: 'ACCEPTED',
-      },
-    },
-
-    // 2️⃣ Lookup arrival where regid matches
-    {
-      $lookup: {
-        from: 'arrivals', // MongoDB collection name (usually plural lowercase)
-        let: { regId: '$regid', millId: '$millid' },
-        pipeline: [
-          {
-            $match: {
-              $expr: {
-                $and: [
-                  { $eq: ['$regid', '$$regId'] },
-                  { $eq: ['$millid', '$$millId'] },
-                  { $eq: ['$status', 'ACCEPTED'] },
-                ],
-              },
-            },
-          },
-        ],
-        as: 'arrivalData',
-      },
-    },
-
-    // 3️⃣ Remove registrations where no accepted arrival found
-    {
-      $match: {
-        arrivalData: { $ne: [] },
-      },
-    },
-
-    // 4️⃣ Optional: unwind arrival (if you want single object instead of array)
-    {
-      $unwind: '$arrivalData',
-    },
-  ]);
-
-  return result;
+ async GetVerificationByMill(millid: string) {
+  return this.registrationModel
+    .find({ millid: new Types.ObjectId(millid) })
+    .populate('millid')
+    .populate('registrationid')
+    .populate('arrivalid')
+    .lean();
 }
 }
