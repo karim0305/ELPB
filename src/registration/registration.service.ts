@@ -154,4 +154,15 @@ async create(dto: CreateRegistrationDto): Promise<Registration> {
       .find(query)
       .sort({ createdAt: -1 });
   }
+
+    async getRegistrationElpByMillId(millid: string) {
+      return this.registrationModel
+        .find({
+          millid: new Types.ObjectId(millid),
+          status: 'Pending',
+        })
+        .populate('millid')
+        .populate('elpId')
+        .lean();
+    }
 }

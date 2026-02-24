@@ -32,6 +32,15 @@ export class RegistrationController {
     );
   }
 
+
+   @Get('registrationWithElp/:millid')
+    registrationWithElp(
+      @Param('millid') millid: string,
+    ) {
+      return this.registrationService.getRegistrationElpByMillId(millid);
+    }
+  
+  
   
 
   @Get(':id')
