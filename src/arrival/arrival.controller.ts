@@ -41,13 +41,13 @@ export class ArrivalController {
     return this.arrivalService.updateStatus(id, status);
   }
 
-   @Patch(':id/data')
-  async updateArrival(
-    @Param('id') id: string,
-    @Body() updateDto: Partial<CreateArrivalDto>,
-  ): Promise<Arrival> {
-    return this.arrivalService.update(id, updateDto);
-  }
+@Patch(':id')
+async updateArrival(
+  @Param('id') id: string,
+  @Body() updateDto: Partial<CreateArrivalDto>,
+) {
+  return this.arrivalService.update(id, updateDto);
+}
 
   @Delete(':id')
   async remove(@Param('id') id: string): Promise<Arrival> {
