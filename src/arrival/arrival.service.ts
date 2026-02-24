@@ -83,6 +83,35 @@ async getArrivalElpByMillId(millid: string) {
     }
     return updated;
   }
+  
+
+  // Update Arrival (return populated object for consistency)
+  async update(id: string, updateDto: Partial<CreateArrivalDto>): Promise<Arrival> {
+    const updated = await this.arrivalModel
+      .findByIdAndUpdate(
+        id,
+        {
+          ...updateDto,
+          ...(updateDto.millid && {
+            millid: new Types.ObjectId(updateDto.millid),
+          }),
+          ...(updateDto.userid && {
+            userid: new Types.ObjectId(updateDto.userid),
+          }),
+          ...(updateDto.deviceId && {
+            deviceId: new Types.ObjectId(updateDto.deviceId),
+          }),
+        },
+        { new: true },
+      )
+      .populate('millid deviceId')
+      .exec();
+
+    if (!updated) {
+      throw new NotFoundException(`Arrival with id ${id} not found`);
+    }
+    return updated;
+  }
 
   // Delete Arrival (return populated object for consistency)
   async delete(id: string): Promise<Arrival> {
