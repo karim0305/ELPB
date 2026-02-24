@@ -29,15 +29,11 @@ export class ElpController {
   @ApiBody({ type: CreateElpDto })
   create(@Body() createElpDto: CreateElpDto) {
     return this.elpService.create(createElpDto);
+    
   }
 
-  @Get()
-  @ApiOperation({ summary: 'Get all ELPs' })
-  findAllElps() {
-    return this.elpService.findAllElps();
-  }
 
-  @Get()
+   @Get(':millid')
   @ApiOperation({ summary: 'Get all ELPs or filter by millid' })
   @ApiQuery({ name: 'millid', required: false, example: '696b44fa74777afd475766b6' })
   findAll(@Query('millid') millid?: string) {
@@ -46,6 +42,15 @@ export class ElpController {
     }
     return this.elpService.findAll();
   }
+  
+  
+  @Get()
+  @ApiOperation({ summary: 'Get all ELPs' })
+  findAllElps() {
+    return this.elpService.findAllElps();
+  }
+
+ 
 
   @Get(':id')
   @ApiOperation({ summary: 'Get ELP by ID' })

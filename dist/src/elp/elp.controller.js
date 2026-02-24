@@ -27,14 +27,14 @@ let ElpController = class ElpController {
     create(createElpDto) {
         return this.elpService.create(createElpDto);
     }
-    findAllElps() {
-        return this.elpService.findAllElps();
-    }
     findAll(millid) {
         if (millid) {
             return this.elpService.findByMillId(millid);
         }
         return this.elpService.findAll();
+    }
+    findAllElps() {
+        return this.elpService.findAllElps();
     }
     findOne(id) {
         return this.elpService.findOne(id);
@@ -57,14 +57,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], ElpController.prototype, "create", null);
 __decorate([
-    (0, common_1.Get)(),
-    (0, swagger_1.ApiOperation)({ summary: 'Get all ELPs' }),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], ElpController.prototype, "findAllElps", null);
-__decorate([
-    (0, common_1.Get)(),
+    (0, common_1.Get)(':millid'),
     (0, swagger_1.ApiOperation)({ summary: 'Get all ELPs or filter by millid' }),
     (0, swagger_1.ApiQuery)({ name: 'millid', required: false, example: '696b44fa74777afd475766b6' }),
     __param(0, (0, common_2.Query)('millid')),
@@ -72,6 +65,13 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], ElpController.prototype, "findAll", null);
+__decorate([
+    (0, common_1.Get)(),
+    (0, swagger_1.ApiOperation)({ summary: 'Get all ELPs' }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], ElpController.prototype, "findAllElps", null);
 __decorate([
     (0, common_1.Get)(':id'),
     (0, swagger_1.ApiOperation)({ summary: 'Get ELP by ID' }),
