@@ -13,5 +13,6 @@ export declare class ArrivalService {
     })[]>;
     findById(id: string): Promise<Arrival>;
     updateStatus(id: string, status: string): Promise<Arrival>;
+    update(id: string, updateDto: Partial<CreateArrivalDto>): Promise<Arrival>;
     delete(id: string): Promise<Arrival>;
 }

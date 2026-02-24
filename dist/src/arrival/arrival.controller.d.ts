@@ -13,5 +13,6 @@ export declare class ArrivalController {
     findAll(): Promise<Arrival[]>;
     findOne(id: string): Promise<Arrival>;
     updateStatus(id: string, status: string): Promise<Arrival>;
+    updateArrival(id: string, updateDto: Partial<CreateArrivalDto>): Promise<Arrival>;
     remove(id: string): Promise<Arrival>;
 }

@@ -17,4 +17,9 @@ export declare class RegistrationService {
     }> & {
         __v: number;
     })[]>;
+    getRegistrationElpByMillId(millid: string): Promise<(import("mongoose").FlattenMaps<RegistrationDocument> & Required<{
+        _id: import("mongoose").FlattenMaps<unknown>;
+    }> & {
+        __v: number;
+    })[]>;
 }

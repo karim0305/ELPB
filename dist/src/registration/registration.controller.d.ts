@@ -11,6 +11,11 @@ export declare class RegistrationController {
     }> & {
         __v: number;
     })[]>;
+    registrationWithElp(millid: string): Promise<(import("mongoose").FlattenMaps<RegistrationDocument> & Required<{
+        _id: import("mongoose").FlattenMaps<unknown>;
+    }> & {
+        __v: number;
+    })[]>;
     findOne(id: string): Promise<Registration>;
     update(id: string, updateDto: Partial<CreateRegistrationDto>): Promise<Registration>;
     remove(id: string): Promise<Registration>;

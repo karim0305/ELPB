@@ -77,6 +77,27 @@ let ArrivalService = class ArrivalService {
         }
         return updated;
     }
+    async update(id, updateDto) {
+        const updated = await this.arrivalModel
+            .findByIdAndUpdate(id, {
+            ...updateDto,
+            ...(updateDto.millid && {
+                millid: new mongoose_2.Types.ObjectId(updateDto.millid),
+            }),
+            ...(updateDto.userid && {
+                userid: new mongoose_2.Types.ObjectId(updateDto.userid),
+            }),
+            ...(updateDto.deviceId && {
+                deviceId: new mongoose_2.Types.ObjectId(updateDto.deviceId),
+            }),
+        }, { new: true })
+            .populate('millid deviceId')
+            .exec();
+        if (!updated) {
+            throw new common_1.NotFoundException(`Arrival with id ${id} not found`);
+        }
+        return updated;
+    }
     async delete(id) {
         const deleted = await this.arrivalModel
             .findByIdAndDelete(id)

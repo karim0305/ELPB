@@ -14,5 +14,9 @@ export declare class VerificationService {
     remove(id: string): Promise<{
         message: string;
     }>;
-    GetVerificationByMill(millid: string): Promise<any[]>;
+    GetVerificationByMill(millid: string): Promise<(import("mongoose").FlattenMaps<VerificationDocument> & Required<{
+        _id: import("mongoose").FlattenMaps<unknown>;
+    }> & {
+        __v: number;
+    })[]>;
 }

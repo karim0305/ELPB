@@ -13,6 +13,8 @@ const verification_schema_1 = require("./schema/verification.schema");
 const verification_service_1 = require("./verification.service");
 const verification_controller_1 = require("./verification.controller");
 const registration_schema_1 = require("../registration/schema/registration.schema");
+const arrival_schema_1 = require("../arrival/schema/arrival.schema");
+const millinfo_schema_1 = require("../millinfo/schema/millinfo.schema");
 let VerificationModule = class VerificationModule {
 };
 exports.VerificationModule = VerificationModule;
@@ -22,6 +24,8 @@ exports.VerificationModule = VerificationModule = __decorate([
             mongoose_1.MongooseModule.forFeature([
                 { name: verification_schema_1.Verification.name, schema: verification_schema_1.VerificationSchema },
                 { name: registration_schema_1.Registration.name, schema: registration_schema_1.RegistrationSchema },
+                { name: millinfo_schema_1.MillInfo.name, schema: millinfo_schema_1.MillInfoSchema },
+                { name: arrival_schema_1.Arrival.name, schema: arrival_schema_1.ArrivalSchema },
             ]),
         ],
         controllers: [verification_controller_1.VerificationController],

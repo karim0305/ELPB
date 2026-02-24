@@ -120,6 +120,16 @@ let RegistrationService = class RegistrationService {
             .find(query)
             .sort({ createdAt: -1 });
     }
+    async getRegistrationElpByMillId(millid) {
+        return this.registrationModel
+            .find({
+            millid: new mongoose_2.Types.ObjectId(millid),
+            status: 'Pending',
+        })
+            .populate('millid')
+            .populate('elpId')
+            .lean();
+    }
 };
 exports.RegistrationService = RegistrationService;
 exports.RegistrationService = RegistrationService = __decorate([

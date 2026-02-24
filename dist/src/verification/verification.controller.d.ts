@@ -11,5 +11,9 @@ export declare class VerificationController {
     remove(id: string): Promise<{
         message: string;
     }>;
-    GetVerification(millid: string): Promise<any[]>;
+    GetVerification(millid: string): Promise<(import("mongoose").FlattenMaps<import("./schema/verification.schema").VerificationDocument> & Required<{
+        _id: import("mongoose").FlattenMaps<unknown>;
+    }> & {
+        __v: number;
+    })[]>;
 }

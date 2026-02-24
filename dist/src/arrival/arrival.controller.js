@@ -36,6 +36,9 @@ let ArrivalController = class ArrivalController {
     async updateStatus(id, status) {
         return this.arrivalService.updateStatus(id, status);
     }
+    async updateArrival(id, updateDto) {
+        return this.arrivalService.update(id, updateDto);
+    }
     async remove(id) {
         return this.arrivalService.delete(id);
     }
@@ -76,6 +79,14 @@ __decorate([
     __metadata("design:paramtypes", [String, String]),
     __metadata("design:returntype", Promise)
 ], ArrivalController.prototype, "updateStatus", null);
+__decorate([
+    (0, common_1.Patch)(':id'),
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, Object]),
+    __metadata("design:returntype", Promise)
+], ArrivalController.prototype, "updateArrival", null);
 __decorate([
     (0, common_1.Delete)(':id'),
     __param(0, (0, common_1.Param)('id')),

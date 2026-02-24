@@ -15,10 +15,16 @@ export class VerificationService {
   private registrationModel: Model<RegistrationDocument>,
   ) {}
 
-  async create(createDto: CreateVerificationDto): Promise<Verification> {
-    const created = new this.verificationModel(createDto);
-    return created.save();
-  }
+async create(createDto: CreateVerificationDto): Promise<Verification> {
+  const created = new this.verificationModel({
+    ...createDto,
+    millid: new Types.ObjectId(createDto.millid),
+    registrationid: new Types.ObjectId(createDto.registrationid),
+    arrivalid: new Types.ObjectId(createDto.arrivalid),
+  });
+
+  return created.save();
+}
 
   async findAll(): Promise<Verification[]> {
     return this.verificationModel
@@ -71,7 +77,7 @@ export class VerificationService {
   
 
  async GetVerificationByMill(millid: string) {
-  return this.registrationModel
+  return this.verificationModel
     .find({ millid: new Types.ObjectId(millid) })
     .populate('millid')
     .populate('registrationid')

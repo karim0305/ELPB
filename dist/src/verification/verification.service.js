@@ -26,7 +26,12 @@ let VerificationService = class VerificationService {
         this.registrationModel = registrationModel;
     }
     async create(createDto) {
-        const created = new this.verificationModel(createDto);
+        const created = new this.verificationModel({
+            ...createDto,
+            millid: new mongoose_2.Types.ObjectId(createDto.millid),
+            registrationid: new mongoose_2.Types.ObjectId(createDto.registrationid),
+            arrivalid: new mongoose_2.Types.ObjectId(createDto.arrivalid),
+        });
         return created.save();
     }
     async findAll() {
@@ -66,43 +71,12 @@ let VerificationService = class VerificationService {
         return { message: 'Verification deleted successfully' };
     }
     async GetVerificationByMill(millid) {
-        const result = await this.registrationModel.aggregate([
-            {
-                $match: {
-                    millid: new mongoose_2.Types.ObjectId(millid),
-                    status: 'ACCEPTED',
-                },
-            },
-            {
-                $lookup: {
-                    from: 'arrivals',
-                    let: { regId: '$regid', millId: '$millid' },
-                    pipeline: [
-                        {
-                            $match: {
-                                $expr: {
-                                    $and: [
-                                        { $eq: ['$regid', '$$regId'] },
-                                        { $eq: ['$millid', '$$millId'] },
-                                        { $eq: ['$status', 'ACCEPTED'] },
-                                    ],
-                                },
-                            },
-                        },
-                    ],
-                    as: 'arrivalData',
-                },
-            },
-            {
-                $match: {
-                    arrivalData: { $ne: [] },
-                },
-            },
-            {
-                $unwind: '$arrivalData',
-            },
-        ]);
-        return result;
+        return this.verificationModel
+            .find({ millid: new mongoose_2.Types.ObjectId(millid) })
+            .populate('millid')
+            .populate('registrationid')
+            .populate('arrivalid')
+            .lean();
     }
 };
 exports.VerificationService = VerificationService;

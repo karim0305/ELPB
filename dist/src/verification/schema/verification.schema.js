@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.VerificationSchema = exports.Verification = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
+const arrival_entity_1 = require("../../arrival/entities/arrival.entity");
 const millinfo_schema_1 = require("../../millinfo/schema/millinfo.schema");
 const registration_schema_1 = require("../../registration/schema/registration.schema");
 let Verification = class Verification {
@@ -41,6 +42,7 @@ __decorate([
 __decorate([
     (0, mongoose_1.Prop)({
         type: mongoose_2.Types.ObjectId,
+        ref: arrival_entity_1.Arrival.name,
         required: true,
     }),
     __metadata("design:type", mongoose_2.Types.ObjectId)
