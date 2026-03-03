@@ -76,12 +76,31 @@ async create(createDto: CreateVerificationDto): Promise<Verification> {
   }
   
 
- async GetVerificationByMill(millid: string) {
+//  async GetVerificationByMill(millid: string) {
+//   return this.verificationModel
+//     .find({ millid: new Types.ObjectId(millid) })
+//     .populate('millid')
+//     .populate('registrationid')
+//     .populate('arrivalid')
+//     .lean();
+// }
+
+async GetVerificationByMill(millid: string) {
   return this.verificationModel
-    .find({ millid: new Types.ObjectId(millid) })
+    .find({ 
+      millid: new Types.ObjectId(millid),
+      status: "Pending"   // ✅ yeh add karo
+    })
     .populate('millid')
-    .populate('registrationid')
-    .populate('arrivalid')
+    .populate({
+      path: 'registrationid',
+      populate: { path: 'elpId', model: 'Elp' },
+    })
+    .populate({
+      path: 'arrivalid',
+      populate: { path: 'elpId', model: 'Elp' },
+    })
     .lean();
 }
+
 }
