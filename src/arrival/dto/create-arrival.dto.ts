@@ -40,6 +40,12 @@ export class CreateArrivalDto {
   @IsNotEmpty()
   elpId: string;
 
+   @ApiProperty({ example: '64cfa9a3b8c1a34f9e12abcd', description: 'Unique id of Registration' })
+  @IsMongoId()
+  @IsNotEmpty()
+  registrationid: string;
+
+
 
   @ApiProperty({
     example: { latitude: 37.7749, longitude: -122.4194 },

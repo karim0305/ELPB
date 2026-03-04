@@ -56,6 +56,15 @@ export class Arrival {
   })
   elpId: Types.ObjectId;
 
+  
+  @Prop({ 
+    type: Types.ObjectId, 
+    ref: Registration.name, 
+    required: true 
+  })
+  registrationid: Types.ObjectId;
+
+
 
 
   @Prop({ type: GpsSchema }) // nested object
