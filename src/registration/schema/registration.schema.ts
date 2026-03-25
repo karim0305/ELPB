@@ -19,7 +19,7 @@ export class Gps {
 
 export const GpsSchema = SchemaFactory.createForClass(Gps);
 
-@Schema()
+@Schema({ timestamps: true })
 export class Registration {
 
 
